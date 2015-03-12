@@ -37,6 +37,8 @@ public class Login extends HttpServlet {
         
         if (user.equals("BryceF") && password.equals("qwerty"))
             request.getSession().setAttribute("user", user);
+        request.getRequestDispatcher("collection.jsp").forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
