@@ -3,6 +3,17 @@
     Created on : Mar 10, 2015, 3:42:46 PM
     Author     : Bryce
 --%>
+<%
+//  if (${sessionscope.user} != null)
+    
+    //java preload handler
+    /*
+    java web preload handler
+    run code before each request
+    Interceptor --> has methods that help me out
+    
+    */
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
