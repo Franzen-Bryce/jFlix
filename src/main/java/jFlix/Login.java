@@ -42,6 +42,8 @@ public class Login extends HttpServlet {
         
         Connection conn = null;
         Statement stmt = null;
+        boolean message = false;
+
         
         try {
            
@@ -72,19 +74,18 @@ public class Login extends HttpServlet {
                         request.getSession().setAttribute("username", user);
                         request.getRequestDispatcher("collection.jsp").forward(request, response);
                         rs.close();
+                        message = false;
                         break;
 //                        System.out.println("Password is correct");
                     }
                     else {
                         request.setAttribute("message", "Password Incorrect");
-                        request.getRequestDispatcher("index.jsp").forward(request, response);
-
+                        message = true;
                     }
                 }
                 else {
                     request.setAttribute("message", "User does not Exist");
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
-
+                    message = true;
                 }
             }
         rs.close();
@@ -96,7 +97,9 @@ public class Login extends HttpServlet {
         catch (Exception e) {
             System.out.println(e);
         }
-        
+        if (message)
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
