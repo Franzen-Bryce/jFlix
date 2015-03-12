@@ -35,9 +35,13 @@ public class Login extends HttpServlet {
         String user = request.getParameter("username");
         String password = request.getParameter("password");
         
-        if (user.equals("BryceF") && password.equals("qwerty"))
+        if (user.equals("BryceF") && password.equals("qwerty")){
             request.getSession().setAttribute("user", user);
-        request.getRequestDispatcher("collection.jsp").forward(request, response);
+            request.getRequestDispatcher("collection.jsp").forward(request, response);
+        }
+        else {
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
         
     }
 
