@@ -66,5 +66,6 @@
                 </form>
             </div>
         </div>
+        <%@include file="/modules/footer.html"%>
     </body>
 </html>
