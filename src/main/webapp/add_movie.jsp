@@ -16,7 +16,7 @@
         <script type="text/javascript">
             //setup before functions
              var typingTimer;                //timer identifier
-             var doneTypingInterval = 500;  //time in ms, 1 second for example
+             var doneTypingInterval = 300;  //time in ms, 1 second for example
 
              //on keyup, start the countdown
              function search(){
