@@ -50,15 +50,10 @@
             </div>
             <div class="control-group form-group col-md-4">
                 <div class="controls">
-                    <input type="text" class="form-control" name="search" onkeyup="search()" id="search" placeholder="Search">
+                    <input type="text" autofocus class="form-control" name="search" onkeyup="search()" id="search" placeholder="Search">
                 </div>
             </div>
-            <c:forEach items="${movieList}" var="movie">
-                <div class="movie">
-                    <img src="" alt=""/>
-                    <a href="SingleMovie?id=${movie.imdbID}">${movie.Title} (${movie.Year})</a><br>
-                </div>
-            </c:forEach>
+            
             <div id="out"></div>
         </div>
         <footer>
