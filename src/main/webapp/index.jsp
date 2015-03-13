@@ -77,6 +77,8 @@
                 </form>
             </div>
         </div>
-        <%@include file="/modules/footer.html"%>
+        <footer>
+            <%@include file="/modules/footer.html"%>
+        </footer>
     </body>
 </html>

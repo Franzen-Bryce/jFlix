@@ -35,20 +35,25 @@ public class Search extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String search = request.getParameter("search");
         search = search.trim();
         search = search.replace(" ", "+");
         
         URL url = new URL("http://www.omdbapi.com/?s=" + search);
-        
+//        
         ObjectMapper mapper = new ObjectMapper();
-        
+//        
         Map<String, Object> map = mapper.readValue(url, Map.class);
-
+//
         List list = (List)map.get("Search");
-        request.setAttribute("movieList", list);
-        request.getRequestDispatcher("movieResults.jsp").forward(request, response);
+          
+//        request.setAttribute("movieList", list);
+//        request.getRequestDispatcher("AddMovie.jsp").forward(request, response);
+        
+
+        response.getWriter().write("" + list);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

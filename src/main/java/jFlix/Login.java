@@ -97,8 +97,9 @@ public class Login extends HttpServlet {
         catch (Exception e) {
             System.out.println(e);
         }
-        if (message)
+        if (message){
             request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
 
     }
 
