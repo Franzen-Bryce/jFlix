@@ -16,21 +16,26 @@
         <script type="text/javascript">
             //setup before functions
              var typingTimer;                //timer identifier
-             var doneTypingInterval = 1000;  //time in ms, 1 second for example
+             var doneTypingInterval = 500;  //time in ms, 1 second for example
 
              //on keyup, start the countdown
              function search(){
              $('#search').keyup(function(){
                  clearTimeout(typingTimer);
-                 if ($('#search').val) {
+                var loading = $('#loading').html();
+                if (loading !== '<span class="glyphicon glyphicon-repeat glyphicon-repeat-animate"></span> Loading...'){
+                    $('#loading').html('<span class="glyphicon glyphicon-repeat glyphicon-repeat-animate"></span> Loading...');
+                }
+                if ($('#search').val) {
                      typingTimer = setTimeout(function(){ 
                         var value = $("#search").val();
                           $.get('Search',{search:value},function(data) { 
+                                $('#loading').html("");
                                 if (data === "null"){
                                     $('#out').text("No Results Found");
                                 }
                                 else {
-                                    $('#out').text(data);
+                                  $('#out').html(data);
                                 } 
                             });
                      }, doneTypingInterval);
@@ -44,17 +49,24 @@
             <%@include file="/modules/nav.html"%>
         </header>
         <div class="container" style="padding-top: 20px;">
-            <div class="col-md-8">
-                <h1 style="margin-top: 0px;">Search Movies / Add to Your Collection</h1>
-                <div id="out"></div>
-            </div>
-            <div class="control-group form-group col-md-4">
-                <div class="controls">
-                    <input type="text" autofocus class="form-control" name="search" onkeyup="search()" id="search" placeholder="Search">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1 style="margin-top: 0px;">Search Movies / Add to Your Collection</h1>
+                </div>
+                <div class="control-group form-group col-md-4">
+                    <div class="controls">
+                        <input type="text" autofocus class="form-control" name="search" onkeyup="search()" id="search" placeholder="Search">
+                    </div>
                 </div>
             </div>
-            
-            <div id="out"></div>
+            <div class="row">
+                <div id="loading" class="col-md-12" style="text-align: center; font-size: 14pt; height: 20px;"></div>
+                <div class="col-md-12">
+                    <div id="out" style="padding-top: 20px;">
+                        <!--content goes here-->
+                    </div>
+                </div>
+            </div>
         </div>
         <footer>
             <%@include file="/modules/footer.html"%>

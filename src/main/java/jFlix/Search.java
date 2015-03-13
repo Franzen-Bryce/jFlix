@@ -40,20 +40,17 @@ public class Search extends HttpServlet {
         search = search.trim();
         search = search.replace(" ", "+");
         
-        URL url = new URL("http://www.omdbapi.com/?s=" + search);
+        URL url = new URL("http://www.omdbapi.com/?s=" + search + "&r=json");
 //        
         ObjectMapper mapper = new ObjectMapper();
 //        
         Map<String, Object> map = mapper.readValue(url, Map.class);
 //
         List list = (List)map.get("Search");
-          
+        
+        response.getWriter().write("" + list);
 //        request.setAttribute("movieList", list);
 //        request.getRequestDispatcher("AddMovie.jsp").forward(request, response);
-        
-
-        response.getWriter().write("" + list);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
