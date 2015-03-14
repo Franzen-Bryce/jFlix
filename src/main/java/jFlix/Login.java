@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.sql.*;
+import sun.rmi.runtime.Log;
 
 /**
  *
@@ -36,6 +37,11 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        /*
+        Bryce and Paul, if you do not have MySQL working with a database for this project,
+        You can use the default username Beast and password qwerty to log in and test the 
+        Collection page. 
+        */
         //Gets the username and password that is typed in for logging in.
         String user = request.getParameter("username");
         String password = request.getParameter("password");
@@ -95,7 +101,13 @@ public class Login extends HttpServlet {
 
         }
         catch (Exception e) {
-            System.out.println(e);
+//            System.out.println(e);
+            System.out.println("ERROR");
+            if (user.equals("Beast") && password.equals("qwerty")) {
+                request.getSession().setAttribute("username", user);
+                request.getRequestDispatcher("collection.jsp").forward(request, response);
+            }
+                
         }
         if (message){
             request.getRequestDispatcher("index.jsp").forward(request, response);
