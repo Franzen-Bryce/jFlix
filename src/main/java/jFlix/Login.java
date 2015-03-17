@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,7 +25,12 @@ import java.sql.*;
 public class Login extends HttpServlet {
 
        static final String DB_URL = "jdbc:mysql://localhost/jFlix";
+       //root ""
+       static final String DB_URL2 = "jdbc:mysql://" + System.getenv("OPENSHIFT_MYSQL_DB_HOST") + ":" +
+               System.getenv("OPENSHIFT_MYSQL_DB_PORT")+ "/jFlix";
+       //java "java-pass"
 
+       
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,81 +43,69 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        /*
-        Bryce and Paul, if you do not have MySQL working with a database for this project,
-        You can use the default username Beast and password qwerty to log in and test the 
-        Collection page. 
-        */
-        //Gets the username and password that is typed in for logging in.
-        String user = request.getParameter("username");
-        String password = request.getParameter("password");
-        
-        Connection conn = null;
-        Statement stmt = null;
-        boolean message = false;
-
-        
-        try {
-           
-            //creates the driver for connecting
-            Class.forName("com.mysql.jdbc.Driver");
-            
-            //connects to the Database
-            System.out.println("Connecting to Database");
-            conn = DriverManager.getConnection(DB_URL, "root", "");
-                        
-            //query from the database all information from the user table
-            String query = "SELECT * FROM user";
-            stmt = conn.createStatement();
-            
-            //executes the query and saves it into a ResultSet
-            ResultSet rs = stmt.executeQuery(query);
-            
-            //loops through all the users and checks them
-            while (rs.next()) {
-                System.out.println(rs.getString("username")); //displays each user
-                
-                
-                if (rs.getString("username").equals(user)) { //only enters if it finds the username
-//                    System.out.println("I FOUND A USER");
-                    
-                    if (rs.getString("password").equals(password)) { //enters if pswd equal 
-                        //sets the session for the user and then redirects to their collections
-                        request.getSession().setAttribute("username", user);
-                        request.getRequestDispatcher("collection.jsp").forward(request, response);
-                        rs.close();
-                        message = false;
-                        break;
+           try {
+               /*
+               Bryce and Paul, if you do not have MySQL working with a database for this project,
+               You can use the default username Beast and password qwerty to log in and test the
+               Collection page.
+               */
+               //Gets the username and password that is typed in for logging in.
+               
+               
+               String user = request.getParameter("username");
+               String password = request.getParameter("password");
+               
+               Connection conn;
+               Statement stmt;
+               boolean message = false;
+               PrintWriter out = response.getWriter();
+               
+               
+               conn = new DBControl().connectDB();
+               
+               //query from the database all information from the user table
+               String query = "SELECT * FROM user";
+               stmt = conn.createStatement();
+               
+               //executes the query and saves it into a ResultSet
+               ResultSet rs = stmt.executeQuery(query);
+               
+               //loops through all the users and checks them
+               while (rs.next()) {
+                   out.println(rs.getString("username")); //displays each user
+                   
+                   
+                   if (rs.getString("username").equals(user)) { //only enters if it finds the username
+                       out.println("I FOUND A USER");
+                       
+                       if (rs.getString("password").equals(password)) { //enters if pswd equal
+                           //sets the session for the user and then redirects to their collections
+                           request.getSession().setAttribute("username", user);
+                           request.getRequestDispatcher("collection.jsp").forward(request, response);
+                           rs.close();
+                           message = false;
+                           break;
 //                        System.out.println("Password is correct");
-                    }
-                    else {
-                        request.setAttribute("message", "Password Incorrect");
-                        message = true;
-                    }
-                }
-                else {
-                    request.setAttribute("message", "User does not Exist");
-                    message = true;
-                }
-            }
-        rs.close();
-        stmt.close();
-        conn.close();
-        
-
-        }
-        catch (Exception e) {
-//            System.out.println(e);
-            System.out.println("ERROR");
-            if (user.equals("Beast") && password.equals("qwerty")) {
-                request.getSession().setAttribute("username", user);
-                request.getRequestDispatcher("collection.jsp").forward(request, response);
-            }
-                
-        }
-        if (message){
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
+                       }
+                       else {
+                           request.setAttribute("message", "Password Incorrect");
+                           message = true;
+                       }
+                   }
+                   else {
+                       request.setAttribute("message", "User does not Exist");
+                       message = true;
+                   }
+               }
+               rs.close();
+               stmt.close();
+               conn.close();
+               
+               if (message){
+                   request.getRequestDispatcher("index.jsp").forward(request, response);
+               }  } catch (SQLException ex) {
+               Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+           }
 
     }
 
