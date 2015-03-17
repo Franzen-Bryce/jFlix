@@ -6,9 +6,12 @@
 package jFlix;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -16,6 +19,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import static javax.ws.rs.client.Entity.json;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 /**
  *
@@ -40,6 +46,7 @@ public class Search extends HttpServlet {
         search = search.trim();
         search = search.replace(" ", "+");
         
+//      GET MOVIE LIST
         URL url = new URL("http://www.omdbapi.com/?s=" + search + "&r=json");
 //        
         ObjectMapper mapper = new ObjectMapper();
@@ -48,9 +55,31 @@ public class Search extends HttpServlet {
 //
         List list = (List)map.get("Search");
         
-        response.getWriter().write("" + list);
-//        request.setAttribute("movieList", list);
-//        request.getRequestDispatcher("AddMovie.jsp").forward(request, response);
+//      GET MOVIE ID's
+        List<Object> imdbIDs = new ArrayList<>();
+        for (Object item : list)
+        {
+              Map<String, Object> innerMap = (Map<String, Object>)item;
+              for (String key : innerMap.keySet())
+              {
+                  if (key.equals("imdbID")){
+                      imdbIDs.add(innerMap.get(key));
+                  }
+              }
+        }
+        
+//      GET MOVIE POSTER LINKS
+        List<Object> results = new ArrayList<>();
+        for (Object item2: imdbIDs){
+            URL url2 = new URL("http://www.omdbapi.com/?i=" + item2 + "&r=json");
+            ObjectMapper mapper2 = new ObjectMapper();
+            Map<String, Object> map2 = mapper2.readValue(url2, Map.class);
+            results.add(map2);
+        }     
+        
+        
+        String json = new Gson().toJson(results);
+        response.getWriter().write("" + json);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

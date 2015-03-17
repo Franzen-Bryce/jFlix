@@ -16,7 +16,7 @@
         <script type="text/javascript">
             //setup before functions
              var typingTimer;                //timer identifier
-             var doneTypingInterval = 300;  //time in ms, 1 second for example
+             var doneTypingInterval = 1000;  //time in ms, 1 second for example
 
              //on keyup, start the countdown
              function search(){
@@ -35,7 +35,25 @@
                                     $('#out').text("No Results Found");
                                 }
                                 else {
-                                  $('#out').html(data);
+                                //for string information
+//                                  $('#out').html(data);
+                                  
+                                //for json information
+                                    var arr = JSON.parse(data);
+                                    var i;
+                                    var out = "";
+                                    var posterImg = "";
+                                    for(i = 0; i < arr.length; i++) {
+                                        if (arr[i].Poster === "N/A"){
+                                            posterImg = "";
+//                                            posterImg = "http://3.bp.blogspot.com/-7ziyoiZu3uo/UlEp5zOR3BI/AAAAAAAAAfU/MhA6cwGGy7E/s1600/Poster+Not+Available+png.png";
+                                        }
+                                        else {
+                                            posterImg = arr[i].Poster;
+                                        }
+                                        out += "<div class='movieContainer'><a href='SingleMovie?imdbId=" + arr[i].imdbID + "'><img class='movieImg' src='" + posterImg + "' alt='" + arr[i].Title + "' title='" + arr[i].Title + "'/></a></div>";
+                                    }
+                                    $('#out').html(out);
                                 } 
                             });
                      }, doneTypingInterval);
@@ -48,7 +66,7 @@
         <header>
             <%@include file="/modules/nav.html"%>
         </header>
-        <div class="container" style="padding-top: 20px;">
+        <div class="container" style="padding-top: 20px; padding-bottom: 20px;">
             <div class="row">
                 <div class="col-md-8">
                     <h1 style="margin-top: 0px;">Search Movies / Add to Your Collection</h1>
