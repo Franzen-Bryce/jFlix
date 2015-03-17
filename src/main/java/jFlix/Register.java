@@ -9,6 +9,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,26 +52,44 @@ public class Register extends HttpServlet {
             String password = request.getParameter("password");
             String password2 = request.getParameter("password2");
 
-            String message = "";
+            boolean message = false;
             if (!(password.equals(password2))){
                 //passwords dont match, set error
-                message += "Passwords Do Not Match";
+               request.setAttribute("passwordError", "Passwords Do Not Match");
+               message = true;
             }
 
             boolean exists = true;//get current username from database
             if(exists){
                 //username alread exists, set error
-                message += "Please choose a different username";
+                request.setAttribute("usernameError", "Username is unavailable, please choose a different username.");
+                message = true;
             }
 
-            if(!(message.equals(""))){
-                //return errors
-                request.setAttribute("message", message);
+            if(message){
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
             else {
-                //no errors, creates user and logs them in
-                
+                try {
+                    //no errors, creates user and logs them in
+                    String hashedPass = hash(password).toString();
+                    
+                    Connection conn;
+                    Statement stmt;
+                    
+                    conn = new DBControl().connectDB();
+
+                    //query from the database all information from the user table
+                    String query = "INSERT INTO user (username,password) VALUES(" + username + "," + hashedPass + ")";
+                    stmt = conn.createStatement();
+
+                    //executes the query and saves it into a ResultSet
+                    ResultSet success = stmt.executeQuery(query);
+                    
+                    
+                } catch (Exception ex) {
+                    Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
     }
 
