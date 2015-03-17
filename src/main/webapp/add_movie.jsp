@@ -20,25 +20,24 @@
         </header>
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-8 col-lg-8">
                     <h1 style="margin-top: 0px;">Search Movies / Add to Your Collection</h1>
                 </div>
-                <form action="Search" method="POST">
-                    <div class="control-group form-group col-md-4">
-                        <div class="input-group">
-                            <input type="text" autofocus class="form-control" name="search" id="search" placeholder="e.g. Movie Title">
-                            <span class="input-group-btn">
-                              <button class="btn btn-primary" type="button">Search</button>
-                            </span> 
+                <div class="col-md-4 col-lg-4">
+                    <form action="Search" method="POST">
+                        <div class="control-group form-group">
+                            <div class="input-group">
+                                <input type="text" autofocus class="form-control" name="search" id="search" placeholder="e.g. Movie Title">
+                                <span class="input-group-btn">
+                                  <button class="btn btn-primary" type="button">Search</button>
+                                </span> 
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
             <div class="row">
-                <div id="loading" class="col-md-12" style="text-align: center; font-size: 14pt; height: 20px;"></div>
                 <div class="col-md-12">
-                    <div id="out" style="padding-top: 20px;">
-                        <!--content goes here-->
                         <c:forEach items="${search}" var="movie">
                                 <div class='movieContainer'>
                                     <a href='SingleMovie?imdbID=${movie.imdbID}'>

@@ -37,7 +37,7 @@
                             <h2>${movie.Title}</h2>
                         </div>
                     </div>
-                    <div class="row" style="background-color: #222; padding: 20px 0px;">
+                    <div class="row" style="background-color: #d2d2d2; padding: 20px 0px;">
                         <div class="col-md-3">
                             <b>IMDB User Rating:</b> ${movie.imdbRating}
                         </div>
@@ -51,7 +51,7 @@
                             <b>Maturity Rating:</b> ${movie.Rated}
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" style="padding-bottom: 20px;">
                         <div class="col-md-12">
                             <h3>Plot:</h3>
                             <p>${movie.Plot}</p>
@@ -61,8 +61,7 @@
                             <p>${movie.Actors}</p>
                         </div>
                     </div>
-                    <div class="row">
-                        <hr>
+                    <div class="row" style="background-color: #d2d2d2; padding: 20px 0px;">
                         <div class="col-md-3">
                             <h3>Director:</h3>
                             <p>${movie.Director}</p>
