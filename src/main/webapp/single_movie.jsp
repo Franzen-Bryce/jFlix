@@ -37,8 +37,7 @@
                             <h2>${movie.Title}</h2>
                         </div>
                     </div>
-                    <div class="row">
-                        <hr>
+                    <div class="row" style="background-color: #222; padding: 20px 0px;">
                         <div class="col-md-3">
                             <b>IMDB User Rating:</b> ${movie.imdbRating}
                         </div>
@@ -53,7 +52,6 @@
                         </div>
                     </div>
                     <div class="row">
-                        <hr>
                         <div class="col-md-12">
                             <h3>Plot:</h3>
                             <p>${movie.Plot}</p>
