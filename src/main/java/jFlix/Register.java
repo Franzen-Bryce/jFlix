@@ -7,6 +7,7 @@ package jFlix;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -37,11 +38,20 @@ public class Register extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
-    public byte[] hash(String password) throws NoSuchAlgorithmException {
-        MessageDigest sha256 = MessageDigest.getInstance("SHA-256");        
-        byte[] passBytes = password.getBytes();
-        byte[] passHash = sha256.digest(passBytes);
-        return passHash;
+    public static String md5(String input) {
+        String md5 = null;
+        if(null == input) return null;
+        try {
+            //Create MessageDigest object for MD5
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            //Update input string in message digest
+            digest.update(input.getBytes(), 0, input.length());
+            //Converts message digest value in base 16 (hex) 
+            md5 = new BigInteger(1, digest.digest()).toString(16);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return md5;
     }
     
     
@@ -52,45 +62,48 @@ public class Register extends HttpServlet {
             String password = request.getParameter("password");
             String password2 = request.getParameter("password2");
 
-            boolean message = false;
-            if (!(password.equals(password2))){
-                //passwords dont match, set error
-               request.setAttribute("passwordError", "Passwords Do Not Match");
-               message = true;
-            }
-
-            boolean exists = true;//get current username from database
-            if(exists){
-                //username alread exists, set error
-                request.setAttribute("usernameError", "Username is unavailable, please choose a different username.");
-                message = true;
-            }
-
-            if(message){
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-            }
-            else {
+//            boolean message = false;
+//            if (!(password.equals(password2))){
+//                //passwords dont match, set error
+//               request.setAttribute("passwordError", "Passwords Do Not Match");
+//               message = true;
+//            }
+//
+//            boolean exists = true;//get current username from database
+//            if(exists){
+//                //username alread exists, set error
+//                request.setAttribute("usernameError", "Username is unavailable, please choose a different username.");
+//                message = true;
+//            }
+//
+//            if(message){
+//                request.getRequestDispatcher("index.jsp").forward(request, response);
+//            }
+//            else {
                 try {
                     //no errors, creates user and logs them in
-                    String hashedPass = hash(password).toString();
+                    String hashedPass = md5(password);
+                    request.setAttribute("password", hashedPass);
+                    request.setAttribute("username", username);
+                    request.getRequestDispatcher("collection.jsp").forward(request, response);
                     
-                    Connection conn;
-                    Statement stmt;
-                    
-                    conn = new DBControl().connectDB();
-
-                    //query from the database all information from the user table
-                    String query = "INSERT INTO user (username,password) VALUES(" + username + "," + hashedPass + ")";
-                    stmt = conn.createStatement();
-
-                    //executes the query and saves it into a ResultSet
-                    ResultSet success = stmt.executeQuery(query);
+//                    Connection conn;
+//                    Statement stmt;
+//                    
+//                    conn = new DBControl().connectDB();
+//
+//                    //query from the database all information from the user table
+//                    String query = "INSERT INTO user (username,password) VALUES(" + username + "," + hashedPass + ")";
+//                    stmt = conn.createStatement();
+//
+//                    //executes the query and saves it into a ResultSet
+//                    ResultSet success = stmt.executeQuery(query);;
                     
                     
                 } catch (Exception ex) {
-                    Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+//                    Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
+//            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
