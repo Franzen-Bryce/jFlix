@@ -78,8 +78,11 @@ public class Search extends HttpServlet {
         }     
         
         
-        String json = new Gson().toJson(results);
-        response.getWriter().write("" + json);
+//        String json = new Gson().toJson(results);
+//        response.getWriter().write("" + json);
+        
+        request.setAttribute("search", results);
+        request.getRequestDispatcher("add_movie.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
