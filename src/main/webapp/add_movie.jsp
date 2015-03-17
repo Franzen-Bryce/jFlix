@@ -51,7 +51,7 @@
                                         else {
                                             posterImg = arr[i].Poster;
                                         }
-                                        out += "<div class='movieContainer'><a href='SingleMovie?imdbId=" + arr[i].imdbID + "'><img class='movieImg' src='" + posterImg + "' alt='" + arr[i].Title + "' title='" + arr[i].Title + "'/></a></div>";
+                                        out += "<div class='movieContainer'><a href='SingleMovie?imdbID=" + arr[i].imdbID + "'><img class='movieImg' src='" + posterImg + "' alt='" + arr[i].Title + "' title='" + arr[i].Title + "'/></a></div>";
                                     }
                                     $('#out').html(out);
                                 } 
@@ -66,7 +66,7 @@
         <header>
             <%@include file="/modules/nav.html"%>
         </header>
-        <div class="container" style="padding-top: 20px; padding-bottom: 20px;">
+        <div class="container">
             <div class="row">
                 <div class="col-md-8">
                     <h1 style="margin-top: 0px;">Search Movies / Add to Your Collection</h1>
