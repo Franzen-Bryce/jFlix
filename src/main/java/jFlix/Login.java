@@ -24,13 +24,6 @@ import java.util.logging.Logger;
 @WebServlet(name = "Login", urlPatterns = {"/Login"})
 public class Login extends HttpServlet {
 
-       static final String DB_URL = "jdbc:mysql://localhost/jFlix";
-       //root ""
-       static final String DB_URL2 = "jdbc:mysql://" + System.getenv("OPENSHIFT_MYSQL_DB_HOST") + ":" +
-               System.getenv("OPENSHIFT_MYSQL_DB_PORT")+ "/jFlix";
-       //java "java-pass"
-
-       
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.

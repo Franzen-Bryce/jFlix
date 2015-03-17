@@ -5,11 +5,10 @@
  */
 package jFlix;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URL;
-import java.util.Map;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Bryce
  */
-@WebServlet(name = "SingleMovie", urlPatterns = {"/SingleMovie"})
-public class SingleMovie extends HttpServlet {
+@WebServlet(name = "Register", urlPatterns = {"/Register"})
+public class Register extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,19 +31,43 @@ public class SingleMovie extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    public byte[] hash(String password) throws NoSuchAlgorithmException {
+        MessageDigest sha256 = MessageDigest.getInstance("SHA-256");        
+        byte[] passBytes = password.getBytes();
+        byte[] passHash = sha256.digest(passBytes);
+        return passHash;
+    }
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String imdbID = request.getParameter("imdbID");
-        
-        URL url = new URL("http://www.omdbapi.com/?i=" + imdbID + "&plot=full");
-        
-        ObjectMapper mapper = new ObjectMapper();
-        
-        Map<String, Object> map = mapper.readValue(url, Map.class);
-        
-        request.setAttribute("movie", map);
-        request.getRequestDispatcher("single_movie.jsp").forward(request, response);
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            String password2 = request.getParameter("password2");
+
+            String message = "";
+            if (!(password.equals(password2))){
+                //passwords dont match, set error
+                message += "Passwords Do Not Match";
+            }
+
+            boolean exists = true;//get current username from database
+            if(exists){
+                //username alread exists, set error
+                message += "Please choose a different username";
+            }
+
+            if(!(message.equals(""))){
+                //return errors
+                request.setAttribute("message", message);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+            else {
+                //no errors, creates user and logs them in
+                
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
