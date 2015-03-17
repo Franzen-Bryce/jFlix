@@ -13,54 +13,6 @@
         <title>Add Movie</title>
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<!--        <script type="text/javascript">
-            //setup before functions
-             var typingTimer;                //timer identifier
-             var doneTypingInterval = 1000;  //time in ms, 1 second for example
-
-             //on keyup, start the countdown
-             function search(){
-             $('#search').keyup(function(){
-                 clearTimeout(typingTimer);
-                var loading = $('#loading').html();
-                if (loading !== '<span class="glyphicon glyphicon-repeat glyphicon-repeat-animate"></span> Loading...'){
-                    $('#loading').html('<span class="glyphicon glyphicon-repeat glyphicon-repeat-animate"></span> Loading...');
-                }
-                if ($('#search').val) {
-                     typingTimer = setTimeout(function(){ 
-                        var value = $("#search").val();
-                          $.get('Search',{search:value},function(data) { 
-                                $('#loading').html("");
-                                if (data === "null"){
-                                    $('#out').text("No Results Found");
-                                }
-                                else {
-                                //for string information
-//                                  $('#out').html(data);
-                                  
-                                //for json information
-                                    var arr = JSON.parse(data);
-                                    var i;
-                                    var out = "";
-                                    var posterImg = "";
-                                    for(i = 0; i < arr.length; i++) {
-                                        if (arr[i].Poster === "N/A"){
-                                            posterImg = "";
-//                                            posterImg = "http://3.bp.blogspot.com/-7ziyoiZu3uo/UlEp5zOR3BI/AAAAAAAAAfU/MhA6cwGGy7E/s1600/Poster+Not+Available+png.png";
-                                        }
-                                        else {
-                                            posterImg = arr[i].Poster;
-                                        }
-                                        out += "<div class='movieContainer'><a href='SingleMovie?imdbID=" + arr[i].imdbID + "'><img class='movieImg' src='" + posterImg + "' alt='" + arr[i].Title + "' title='" + arr[i].Title + "'/></a></div>";
-                                    }
-                                    $('#out').html(out);
-                                } 
-                            });
-                     }, doneTypingInterval);
-                 }
-             });
-         }
-        </script>-->
     </head>
     <body>
         <header>
@@ -73,15 +25,12 @@
                 </div>
                 <form action="Search" method="POST">
                     <div class="control-group form-group col-md-4">
-<!--                        <div class="controls">
-                            <input type="text" autofocus class="form-control" name="search" onkeyup="search()" id="search" placeholder="Search">
-                        </div>-->
                         <div class="input-group">
                             <input type="text" autofocus class="form-control" name="search" id="search" placeholder="e.g. Movie Title">
                             <span class="input-group-btn">
                               <button class="btn btn-primary" type="button">Search</button>
                             </span> 
-                        </div><!-- /input-group -->
+                        </div>
                     </div>
                 </form>
             </div>

@@ -77,10 +77,6 @@ public class Search extends HttpServlet {
             results.add(map2);
         }     
         
-        
-//        String json = new Gson().toJson(results);
-//        response.getWriter().write("" + json);
-        
         request.setAttribute("search", results);
         request.getRequestDispatcher("add_movie.jsp").forward(request, response);
     }
