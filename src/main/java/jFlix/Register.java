@@ -38,6 +38,12 @@ public class Register extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     
+    /**
+     * 
+     * @param input
+     * @return 
+     */
+
     public static String md5(String input) {
         String md5 = null;
         if(null == input) return null;
@@ -49,7 +55,6 @@ public class Register extends HttpServlet {
             //Converts message digest value in base 16 (hex) 
             md5 = new BigInteger(1, digest.digest()).toString(16);
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
         }
         return md5;
     }
@@ -62,50 +67,56 @@ public class Register extends HttpServlet {
             String password = request.getParameter("password");
             String password2 = request.getParameter("password2");
 
-//            boolean message = false;
-//            if (!(password.equals(password2))){
-//                //passwords dont match, set error
-//               request.setAttribute("passwordError", "Passwords Do Not Match");
-//               message = true;
-//            }
-//
+
+            boolean message = false;
+            if (!(password.equals(password2))){
+                //passwords dont match, set error
+               request.setAttribute("passwordError", "Passwords Do Not Match");
+               message = true;
+            }
+
+
 //            boolean exists = true;//get current username from database
 //            if(exists){
 //                //username alread exists, set error
 //                request.setAttribute("usernameError", "Username is unavailable, please choose a different username.");
 //                message = true;
 //            }
-//
-//            if(message){
-//                request.getRequestDispatcher("index.jsp").forward(request, response);
-//            }
-//            else {
+
+
+            if(message){
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+            else {
                 try {
                     //no errors, creates user and logs them in
+
                     String hashedPass = md5(password);
                     request.setAttribute("password", hashedPass);
                     request.setAttribute("username", username);
-                    request.getRequestDispatcher("collection.jsp").forward(request, response);
-                    
-//                    Connection conn;
-//                    Statement stmt;
-//                    
-//                    conn = new DBControl().connectDB();
-//
-//                    //query from the database all information from the user table
-//                    String query = "INSERT INTO user (username,password) VALUES(" + username + "," + hashedPass + ")";
-//                    stmt = conn.createStatement();
-//
-//                    //executes the query and saves it into a ResultSet
-//                    ResultSet success = stmt.executeQuery(query);;
-                    
-                    
-                } catch (Exception ex) {
-//                    Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
-                }
-//            }
-    }
 
+                    
+                    Connection conn;
+                    Statement stmt;
+
+                    
+                    conn = new DBControl().connectDB();
+
+                    //query from the database all information from the user table
+                    String query = "INSERT INTO user (username,password) VALUES (\"" + username 
+                            + "\", \"" + hashedPass + "\");";
+                    stmt = conn.createStatement();
+
+//                    System.out.println(query);
+                    //executes the query and saves it into a ResultSet
+                    stmt.executeUpdate(query);
+                }
+                catch(Exception e) {
+                    
+                }
+            }
+            request.getRequestDispatcher("collection.jsp").forward(request, response);
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

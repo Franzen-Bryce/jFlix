@@ -20,7 +20,7 @@
         </header>
         <div class="container">
             <h1>My Collection</h1>
-            ${password};
+            ${password}
         </div>
         <footer>
             <%@include file="/modules/footer.html"%>
