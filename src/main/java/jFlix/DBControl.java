@@ -49,6 +49,7 @@ public class DBControl {
             //creates the driver for connecting
             Class.forName("com.mysql.jdbc.Driver");
             
+//            System.out.println(DB);
             
             conn = DriverManager.getConnection(DB, dbUser, dbPswd);
 
