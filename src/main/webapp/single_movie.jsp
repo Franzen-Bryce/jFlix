@@ -22,6 +22,11 @@ if(null == session.getAttribute("username")){
         <header>
             <%@include file="/modules/nav.html"%>
         </header>
+        <a href="javascript:history.back()">
+            <div class="backButton">
+                <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+            </div>
+        </a>
         <div class="container">
             <c:if test="${session.username}">Hello</c:if>
             <div class="row">
