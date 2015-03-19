@@ -122,8 +122,9 @@ public class Register extends HttpServlet {
                 catch(Exception e) {
                     
                 }
+                request.getRequestDispatcher("Login").forward(request, response);
+                return;
             }
-            request.getRequestDispatcher("collection.jsp").forward(request, response);
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
