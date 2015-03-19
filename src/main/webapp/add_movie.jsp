@@ -34,7 +34,7 @@ request.getSession().setAttribute("page", "add_movie");
                             <div class="input-group">
                                 <input type="text" autofocus class="form-control" name="search" id="search" placeholder="e.g. Movie Title">
                                 <span class="input-group-btn">
-                                  <button class="btn btn-primary" type="button">Search</button>
+                                  <button class="btn btn-primary" type="submit">Search</button>
                                 </span> 
                             </div>
                         </div>
