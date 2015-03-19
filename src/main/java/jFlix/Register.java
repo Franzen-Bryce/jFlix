@@ -102,6 +102,7 @@ public class Register extends HttpServlet {
                     String hashedPass = md5(password);
                     request.setAttribute("password", hashedPass);
                     request.setAttribute("username", username);
+                    request.setAttribute("displayname", displayname);
 
                     
                     Connection conn;
@@ -112,7 +113,7 @@ public class Register extends HttpServlet {
 
                     //query from the database all information from the user table
                     String query = "INSERT INTO user (username, displayname, password) VALUES (\"" + username 
-                            + "\", \"" + displayname + "\" \"" + hashedPass + "\");";
+                            + "\", \"" + displayname + "\", \"" + hashedPass + "\");";
                     //CREATE A SESSION FOR USER
                     stmt = conn.createStatement();
 
