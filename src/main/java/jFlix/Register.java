@@ -64,6 +64,7 @@ public class Register extends HttpServlet {
             throws ServletException, IOException {
         
             String username = request.getParameter("username");
+            String displayname = request.getParameter("displayName");
             String password = request.getParameter("password");
             String password2 = request.getParameter("password2");
             
@@ -110,8 +111,8 @@ public class Register extends HttpServlet {
                     conn = new DBControl().connectDB();
 
                     //query from the database all information from the user table
-                    String query = "INSERT INTO user (username,password) VALUES (\"" + username 
-                            + "\", \"" + hashedPass + "\");";
+                    String query = "INSERT INTO user (username, displayname, password) VALUES (\"" + username 
+                            + "\", \"" + displayname + "\" \"" + hashedPass + "\");";
                     //CREATE A SESSION FOR USER
                     stmt = conn.createStatement();
 
