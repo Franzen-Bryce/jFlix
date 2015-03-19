@@ -61,6 +61,13 @@
                     </div>
                     <div class="control-group form-group">
                         <div class="controls">
+                            <label>Display Name:</label>
+                            <input type="text" class="form-control" id="displayName" name="displayName" required data-validation-required-message="Please enter your display name.">
+                            <p class="help-block"></p>
+                        </div>
+                    </div>
+                    <div class="control-group form-group">
+                        <div class="controls">
                             <label>Password:</label>
                             <input type="password" class="form-control" id="password" name="password" required data-validation-required-message="Please enter your password.">
                         </div>
