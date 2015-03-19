@@ -7,6 +7,9 @@ package jFlix;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +27,27 @@ import java.util.logging.Logger;
 @WebServlet(name = "Login", urlPatterns = {"/Login"})
 public class Login extends HttpServlet {
 
+    
+    /**
+     * 
+     * @param input
+     * @return 
+     */
+    public static String md5(String input) {
+        String md5 = null;
+        if(null == input) return null;
+        try {
+            //Create MessageDigest object for MD5
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            //Update input string in message digest
+            digest.update(input.getBytes(), 0, input.length());
+            //Converts message digest value in base 16 (hex) 
+            md5 = new BigInteger(1, digest.digest()).toString(16);
+        } catch (NoSuchAlgorithmException e) {
+        }
+        return md5;
+    }
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -47,7 +71,10 @@ public class Login extends HttpServlet {
                
                String user = request.getParameter("username");
                String password = request.getParameter("password");
-               //NEED TO HASH THIS PASSWORD BEFORE CHECKING
+               
+               user = user.toLowerCase();
+               
+               String hashPass = md5(password);
                
                Connection conn;
                Statement stmt;
@@ -72,7 +99,7 @@ public class Login extends HttpServlet {
                    if (rs.getString("username").equals(user)) { //only enters if it finds the username
 //                       out.println("I FOUND A USER");
                        
-                       if (rs.getString("password").equals(password)) { //enters if pswd equal
+                       if (rs.getString("password").equals(hashPass)) { //enters if pswd equal
                            //sets the session for the user and then redirects to their collections
                            request.getSession().setAttribute("username", user);
                            request.getRequestDispatcher("collection.jsp").forward(request, response);

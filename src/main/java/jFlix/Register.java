@@ -66,26 +66,33 @@ public class Register extends HttpServlet {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             String password2 = request.getParameter("password2");
+            
+            username = username.toLowerCase();
 
 
             boolean message = false;
             if (!(password.equals(password2))){
                 //passwords dont match, set error
                request.setAttribute("passwordError", "Passwords Do Not Match");
+               System.out.println("Passwords do not match");
+
                message = true;
             }
 
 
-//            boolean exists = true;//get current username from database
-//            if(exists){
-//                //username alread exists, set error
-//                request.setAttribute("usernameError", "Username is unavailable, please choose a different username.");
-//                message = true;
-//            }
+            boolean exists = new DBControl().checkUser(username);//get current username from database
+            if(exists){
+                //username already exists, set error
+                request.setAttribute("usernameError", "Username is unavailable, "
+                        + "please choose a different username.");
+                System.out.println("Found a username");
+                message = true;
+            }
 
 
             if(message){
                 request.getRequestDispatcher("index.jsp").forward(request, response);
+                return;
             }
             else {
                 try {

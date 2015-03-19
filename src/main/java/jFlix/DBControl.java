@@ -7,7 +7,11 @@ package jFlix;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -59,5 +63,31 @@ public class DBControl {
         }
         
         return conn;
+    }
+    
+    
+    public boolean checkUser(String username) {
+        
+        Connection conn = new DBControl().connectDB();
+        boolean found = false;
+        
+         try {
+             Statement stmt = conn.createStatement();
+             
+              String query = "SELECT * FROM user";
+              
+              ResultSet rs = stmt.executeQuery(query);
+              
+              while(rs.next()) {
+                  if (rs.getString("username").equals(username)) {
+                      found = true;
+                      break;
+                  }
+              }
+         } catch (SQLException ex) {
+             Logger.getLogger(DBControl.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        
+        return found;
     }
 }
