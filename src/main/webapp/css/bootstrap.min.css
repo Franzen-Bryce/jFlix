@@ -41,12 +41,11 @@ footer {
 }
 
 .backButton {
-    position: fixed;
-    left: 0px;
-    height: 85%;
-    width: 50px;
+    position: relative;
+    margin-top: -20px;
+    height: 50px;
+    width: 100%;
     background-color: #b1b1b1;
-    display: table;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";       /* IE 8 */
     filter: alpha(opacity=80);  /* IE 5-7 */
     -moz-opacity: 0.8;          /* Netscape */
@@ -54,6 +53,7 @@ footer {
     opacity: 0.8;               /* Good browsers */
     text-decoration: none;
     color: #000;
+    z-index: 999;
 }
 
 .backButton:hover {
@@ -61,12 +61,16 @@ footer {
 }
 
     .backButton span {
-        display:table-cell;
-        vertical-align: middle;
-        text-align: center;
+        margin-top: 10px;
+        text-align: left;
         font-size: 30px;
     }
     
     .backButton span:hover {
         color: #fff;
+    }
+    
+    .backButton p {
+        display: inline-block;
+        font-size: 20px;
     }
