@@ -105,6 +105,7 @@ public class Register extends HttpServlet {
                     //query from the database all information from the user table
                     String query = "INSERT INTO user (username,password) VALUES (\"" + username 
                             + "\", \"" + hashedPass + "\");";
+                    //CREATE A SESSION FOR USER
                     stmt = conn.createStatement();
 
 //                    System.out.println(query);

@@ -47,6 +47,7 @@ public class Login extends HttpServlet {
                
                String user = request.getParameter("username");
                String password = request.getParameter("password");
+               //NEED TO HASH THIS PASSWORD BEFORE CHECKING
                
                Connection conn;
                Statement stmt;
@@ -65,11 +66,11 @@ public class Login extends HttpServlet {
                
                //loops through all the users and checks them
                while (rs.next()) {
-                   out.println(rs.getString("username")); //displays each user
+//                   out.println(rs.getString("username")); //displays each user
                    
                    
                    if (rs.getString("username").equals(user)) { //only enters if it finds the username
-                       out.println("I FOUND A USER");
+//                       out.println("I FOUND A USER");
                        
                        if (rs.getString("password").equals(password)) { //enters if pswd equal
                            //sets the session for the user and then redirects to their collections
