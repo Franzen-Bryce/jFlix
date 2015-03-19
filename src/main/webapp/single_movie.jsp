@@ -24,7 +24,10 @@ if(null == session.getAttribute("username")){
         </header>
         <a href="javascript:history.back()">
             <div class="backButton">
-                <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                <div class="container">
+                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                    <p>Back To Search Results</p>
+                </div>
             </div>
         </a>
         <div class="container">
