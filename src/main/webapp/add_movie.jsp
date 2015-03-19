@@ -3,7 +3,11 @@
     Created on : Mar 10, 2015, 3:16:01 PM
     Author     : Bryce
 --%>
-
+<%
+if(null == session.getAttribute("username")){  
+  response.sendRedirect("index.jsp");
+}
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>

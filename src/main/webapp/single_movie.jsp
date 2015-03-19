@@ -3,7 +3,11 @@
     Created on : Mar 16, 2015, 11:38:25 PM
     Author     : Bryce
 --%>
-
+<%
+if(null == session.getAttribute("username")){  
+  response.sendRedirect("index.jsp");
+}
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
@@ -19,6 +23,7 @@
             <%@include file="/modules/nav.html"%>
         </header>
         <div class="container">
+            <c:if test="${session.username}">Hello</c:if>
             <div class="row">
                 <div class="col-md-3" style="padding-top: 20px;">
                     <img class="img-responsive" src="${movie.Poster}" alt="${movie.Title}"/><br>
