@@ -100,7 +100,6 @@ public class Register extends HttpServlet {
                     //no errors, creates user and logs them in
 
                     String hashedPass = md5(password);
-                    request.setAttribute("password", hashedPass);
                     request.setAttribute("username", username);
                     request.setAttribute("displayname", displayname);
 

@@ -25,7 +25,6 @@ request.getSession().setAttribute("page", "collection");
         </header>
         <div class="container">
             <h1>My Collection</h1>
-            ${password}
         </div>
         <footer>
             <%@include file="/modules/footer.html"%>
