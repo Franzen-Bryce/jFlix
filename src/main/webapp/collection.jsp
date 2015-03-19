@@ -7,6 +7,7 @@
 if(null == session.getAttribute("username")){  
   response.sendRedirect("index.jsp");
 }
+request.getSession().setAttribute("page", "collection");
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
