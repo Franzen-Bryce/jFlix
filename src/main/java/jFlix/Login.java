@@ -102,6 +102,7 @@ public class Login extends HttpServlet {
                        if (rs.getString("password").equals(hashPass)) { //enters if pswd equal
                            //sets the session for the user and then redirects to their collections
                            request.getSession().setAttribute("username", user);
+                           request.getSession().setAttribute("displayname", rs.getString("displayname"));
                            request.getRequestDispatcher("collection.jsp").forward(request, response);
                            rs.close();
                            message = false;
