@@ -31,7 +31,9 @@ if(null == session.getAttribute("username")){
             </div>
         </a>
         <div class="container">
+            <!-- This line of code is here for testing purposes.-->
             <p>${trailerId}</p>
+            <!-- ... -->
             <div class="row">
                 <div class="col-md-3" style="padding-top: 20px;">
                     <img class="img-responsive" src="${movie.Poster}" alt="${movie.Title}"/><br>
