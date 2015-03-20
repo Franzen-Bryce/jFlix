@@ -103,7 +103,7 @@ public class Register extends HttpServlet {
                     request.setAttribute("username", username);
                     request.setAttribute("displayname", displayname);
 
-                    
+                    //comment to test jenkins build
                     Connection conn;
                     Statement stmt;
 
