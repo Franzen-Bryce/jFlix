@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,6 +45,49 @@ public class SingleMovie extends HttpServlet {
         
         Map<String, Object> map = mapper.readValue(url, Map.class);
         
+//      GET Movie Info for Youtube
+        String title = "";
+        String year = "";
+              Map<String, Object> innerMap = (Map<String, Object>)map;
+              for (String key : innerMap.keySet())
+              {
+                  if (key.equals("Title")){
+                      title = innerMap.get(key).toString();
+                  }
+                  if (key.equals("Year")){
+                      year = innerMap.get(key).toString();
+                  }
+              }
+        
+        title = title.trim();
+        title = title.replace(" ", "-");
+        
+        // GET MOVIE Youtube ID
+        URL url2 = new URL("http://gdata.youtube.com/feeds/api/videos?q=" + title + "-official-trailer-" + year + "&start-index=1&max-results=1&v=2&alt=json&hd");
+  
+        ObjectMapper mapper2 = new ObjectMapper();
+        
+        Map<String, Object> map2 = mapper2.readValue(url2, Map.class);
+        
+        // GET MOVIE ID
+        String trailerId = "";
+        
+        Map<String, Object> map3 = (Map)map2.get("feed");
+        ArrayList movieEntry = (ArrayList)map3.get("entry");
+        
+        for (Object item : movieEntry)
+        {
+              Map<String, Object> innerMap2 = (Map<String, Object>)item;
+              for (String key : innerMap2.keySet())
+              {
+                  if (key.equals("media$group")){
+                        trailerId = innerMap2.get(key).toString();
+                        //I NEED HELP HERE... I NEED TO GET THE VALUE OF "yt$videoid" and save it to trailerId.
+                    }
+              }
+          }
+              
+        request.setAttribute("trailerId", trailerId);
         request.setAttribute("movie", map);
         request.getRequestDispatcher("single_movie.jsp").forward(request, response);
     }

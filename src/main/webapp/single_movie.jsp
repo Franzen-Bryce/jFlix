@@ -31,7 +31,7 @@ if(null == session.getAttribute("username")){
             </div>
         </a>
         <div class="container">
-            <c:if test="${session.username}">Hello</c:if>
+            <p>${trailerId}</p>
             <div class="row">
                 <div class="col-md-3" style="padding-top: 20px;">
                     <img class="img-responsive" src="${movie.Poster}" alt="${movie.Title}"/><br>
