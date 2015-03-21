@@ -81,8 +81,9 @@ public class SingleMovie extends HttpServlet {
               for (String key : innerMap2.keySet())
               {
                   if (key.equals("media$group")){
-                        trailerId = innerMap2.get(key).toString();
-                        System.out.println(trailerId);
+                        Map<String, Object> temp = (Map) innerMap2.get(key);
+                        Map<String, String> temp2 = (Map) temp.get("yt$videoid");
+                        trailerId = temp2.get("$t");
                         // HELP ME!!!!!!!!!!!!!!!!!!!!!!!!! PLEASE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         //____________________________________________________________________________________
                         // 
