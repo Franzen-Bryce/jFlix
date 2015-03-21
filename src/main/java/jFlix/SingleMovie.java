@@ -82,6 +82,7 @@ public class SingleMovie extends HttpServlet {
               {
                   if (key.equals("media$group")){
                         trailerId = innerMap2.get(key).toString();
+                        System.out.println(trailerId);
                         // HELP ME!!!!!!!!!!!!!!!!!!!!!!!!! PLEASE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         //____________________________________________________________________________________
                         // 
