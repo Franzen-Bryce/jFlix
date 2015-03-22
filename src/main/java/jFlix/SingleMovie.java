@@ -87,7 +87,7 @@ public class SingleMovie extends HttpServlet {
                     }
               }
           }
-              
+        
         request.setAttribute("trailerId", trailerId);
         request.setAttribute("movie", map);
         request.getRequestDispatcher("single_movie.jsp").forward(request, response);
