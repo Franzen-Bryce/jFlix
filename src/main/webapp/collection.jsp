@@ -26,7 +26,8 @@ request.getSession().setAttribute("page", "collection");
         <div class="container">
             <h1>My Collection</h1>
             <c:forEach items="${ownedMovies}" var="Option">
-                <p>${Option}</p>
+                    <p>${Option.title}</p>
+                    <p>${Option.imdbID}</p>
             </c:forEach>
         </div>
         <footer>

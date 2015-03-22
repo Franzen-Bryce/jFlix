@@ -104,7 +104,7 @@ public class Login extends HttpServlet {
                            request.getSession().setAttribute("username", user);
                            request.getSession().setAttribute("displayname", rs.getString("displayname"));
                            request.getSession().setAttribute("id", rs.getInt("id"));
-                           request.getRequestDispatcher("collection.jsp").forward(request, response);
+                           request.getRequestDispatcher("Collection").forward(request, response);
                            rs.close();
                            message = false;
                            break;

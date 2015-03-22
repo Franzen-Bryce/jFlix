@@ -12,7 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -38,10 +40,10 @@ public class Collection extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {        
         Connection conn = new DBControl().connectDB();
         
-        List<String> ownedMovies = new ArrayList<>();
+        List<Map> ownedMovies = new ArrayList<>();
         try {
             Statement stmt = conn.createStatement();
             
@@ -50,9 +52,12 @@ public class Collection extends HttpServlet {
             
             ResultSet rs = stmt.executeQuery(query);
             
-            
             while (rs.next()) {
-                ownedMovies.add(rs.getString("imdbId"));
+                Map<String, String> option = new HashMap<>();
+
+                option.put("imdbID", rs.getString("imdbId"));
+                option.put("title", rs.getString("movieTitle"));
+                ownedMovies.add(option);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Collection.class.getName()).log(Level.SEVERE, null, ex);
