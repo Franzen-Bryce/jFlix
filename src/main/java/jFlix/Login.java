@@ -103,6 +103,7 @@ public class Login extends HttpServlet {
                            //sets the session for the user and then redirects to their collections
                            request.getSession().setAttribute("username", user);
                            request.getSession().setAttribute("displayname", rs.getString("displayname"));
+                           request.getSession().setAttribute("id", rs.getInt("id"));
                            request.getRequestDispatcher("collection.jsp").forward(request, response);
                            rs.close();
                            message = false;

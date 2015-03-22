@@ -42,7 +42,10 @@ if(null == session.getAttribute("username")){
                             <button class="btn btn-danger" style="width: 100%;">Watch Trailer</button>
                         </div>
                         <div class="col-md-12" style="padding-top: 20px">
-                            <button class="btn btn-primary" style="width: 100%; height: 60px">Add To My Collection</button>
+                            <form action="AddMovie?poster=${movie.Poster}&Title=${movie.Title}
+                                  &genre=${movie.Genre}&imdb=${movie.imdbID}" method="POST">
+                            <button type="submit" class="btn btn-primary" style="width: 100%; height: 60px">Add To My Collection</button>
+                            </form>
                         </div>
                     </div>
                 </div>

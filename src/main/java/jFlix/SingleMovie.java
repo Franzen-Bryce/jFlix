@@ -84,15 +84,6 @@ public class SingleMovie extends HttpServlet {
                         Map<String, Object> temp = (Map) innerMap2.get(key);
                         Map<String, String> temp2 = (Map) temp.get("yt$videoid");
                         trailerId = temp2.get("$t");
-                        // HELP ME!!!!!!!!!!!!!!!!!!!!!!!!! PLEASE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                        //____________________________________________________________________________________
-                        // 
-                        //I NEED HELP HERE... I NEED TO GET THE VALUE OF "yt$videoid" and save it to trailerId.
-                        //its the last part of the string.  for example... 
-                        // yt$videoid={$t=naQr0uTrH_s}}
-                        // i would need this value ...
-                        // naQr0uTrH_s
-                        // THANKS!
                     }
               }
           }

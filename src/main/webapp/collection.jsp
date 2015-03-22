@@ -25,6 +25,9 @@ request.getSession().setAttribute("page", "collection");
         </header>
         <div class="container">
             <h1>My Collection</h1>
+            <c:forEach items="${ownedMovies}" var="Option">
+                <p>${Option}</p>
+            </c:forEach>
         </div>
         <footer>
             <%@include file="/modules/footer.html"%>
