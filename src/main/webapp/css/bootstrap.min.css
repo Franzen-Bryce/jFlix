@@ -31,10 +31,11 @@
 }
 
 .movieTitle {
-    position: relative;
     padding-top: 5px;
     font-size: 12px;
     text-align: center;
+    margin-bottom: 0px;
+    height: 35px;
 }
 
 .movieImg {
