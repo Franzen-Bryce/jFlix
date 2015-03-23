@@ -31,28 +31,17 @@ if(null == session.getAttribute("username")){
             </div>
         </a>
         <div class="container">
-            <!-- Modal For Trailer-->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-body">
-<!--                      <button type="button" style="display: inline-block; float: right;" class="btn btn-danger" data-dismiss="modal">Close</button>-->
-                    <iframe width="854" height="510" src="https://www.youtube.com/embed/${trailerId}" frameborder="0" allowfullscreen></iframe>
-<!--                  </div>
-                  <div class="modal-footer">-->
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End Modal For Trailer-->
+            <!-- This line of code is here for testing purposes.-->
+            <p>${trailerId}</p>
+            <!-- ... -->
             <div class="row">
                 <div class="col-md-3" style="padding-top: 20px;">
-                    <div class="singlePosterImage">
-                        <img class="img-responsive" src="${movie.Poster}" alt="${movie.Title}"/>
-                        <span id="movieTrailer" data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
-                    </div>
+                    <img class="img-responsive" src="${movie.Poster}" alt="${movie.Title}"/><br>
                     <div class="row">
-                        <div class="col-md-12" style="padding-top: 10px">
+                        <div class="col-md-12">
+                            <button class="btn btn-danger" style="width: 100%;">Watch Trailer</button>
+                        </div>
+                        <div class="col-md-12" style="padding-top: 20px">
                             <button class="btn btn-primary" style="width: 100%; height: 60px">Add To My Collection</button>
                         </div>
                     </div>
