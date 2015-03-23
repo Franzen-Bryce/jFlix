@@ -7,6 +7,16 @@ package jFlix;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,10 +40,33 @@ public class Collection extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {        
+        Connection conn = new DBControl().connectDB();
         
-        String url = "collection.jsp";
-        response.sendRedirect(url);
+        List<Map> ownedMovies = new ArrayList<>();
+        try {
+            Statement stmt = conn.createStatement();
+            
+            String query = "SELECT * FROM ownership WHERE userId=" 
+                    + request.getSession().getAttribute("id");
+            
+            ResultSet rs = stmt.executeQuery(query);
+            
+            while (rs.next()) {
+                Map<String, String> option = new HashMap<>();
+
+                option.put("imdbID", rs.getString("imdbId"));
+                option.put("title", rs.getString("movieTitle"));
+                ownedMovies.add(option);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Collection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        request.setAttribute("ownedMovies", ownedMovies);
+//        String url = "collection.jsp";
+//        response.sendRedirect(url);
+        request.getRequestDispatcher("collection.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

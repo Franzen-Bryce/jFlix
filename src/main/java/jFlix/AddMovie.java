@@ -7,6 +7,11 @@ package jFlix;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,19 +36,43 @@ public class AddMovie extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddMovie</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddMovie at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+       
+        String movieTitle = request.getParameter("Title");
+        String nameShared = "";
+        String movieGenre = request.getParameter("genre");
+        String moviePoster = request.getParameter("poster");
+        int userId;
+        String imdbId = request.getParameter("imdb");
+
+//        System.out.println(movieTitle);
+//        System.out.println(movieGenre);
+//        System.out.println(moviePoster);
+//        System.out.println(imdbId);
+        
+        userId = (Integer) request.getSession().getAttribute("id");
+//        System.out.println("USER ID: " + userId);
+        
+        movieTitle = movieTitle.trim();
+        
+        Connection conn = new DBControl().connectDB();
+        try {
+            Statement stmt = conn.createStatement();
+            
+            String query = "INSERT INTO ownership (userId, movieTitle, movieGenre, moviePoster, "
+                    + "imdbId, sharedName) VALUES (\"" + userId + "\", \"" + movieTitle 
+                    + "\", \"" + movieGenre + "\", \"" + moviePoster + "\", \"" + imdbId
+                    + "\", \"" + nameShared + "\");";
+            stmt.executeUpdate(query);
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AddMovie.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        
+        response.sendRedirect("Collection");
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
