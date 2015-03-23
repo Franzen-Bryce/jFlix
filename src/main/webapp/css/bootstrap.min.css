@@ -78,7 +78,9 @@ footer {
 #movieTrailer{
     position: absolute;
     top: 20%;
-    left: 15%;
+    left: auto;
+    right: auto;
+    margin-left: -100px;
     font-size: 200px;
     color: rgba(255,255,255, 0.3);
 }
@@ -86,4 +88,13 @@ footer {
 #movieTrailer:hover {
     color: rgba(255,255,255, 0.7);
     cursor: pointer;
+}
+
+.singlePosterImage {
+    text-align: center;
+}
+
+.singlePosterImage img {
+    margin-left: auto;
+    margin-right: auto;
 }
