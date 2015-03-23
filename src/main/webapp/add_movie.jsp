@@ -44,11 +44,20 @@ request.getSession().setAttribute("page", "add_movie");
             <div class="row">
                 <div class="col-md-12">
                         <c:forEach items="${search}" var="movie">
-                                <div class='movieContainer'>
+                            <div class="movieContainerOuter">
+                                <div class='movieContainerInner'>
                                     <a href='SingleMovie?imdbID=${movie.imdbID}'>
-                                        <img class='movieImg' src='${movie.Poster}' alt='${movie.Title}' title='${movie.Title}'/>
+                                        <c:if test="${movie.Poster == 'N/A'}">
+                                            <img class='movieImg' src='http://www.vernellbrownjr.com/SorryNoImageAvailable.jpg' alt='${movie.Title}' title='${movie.Title}'/>
+
+                                        </c:if>
+                                        <c:if test="${movie.Poster != 'N/A'}">
+                                            <img class='movieImg' src='${movie.Poster}' alt='${movie.Title}' title='${movie.Title}'/>
+                                        </c:if>
                                     </a>
                                 </div>
+                                <p class="movieTitle">${movie.Title}</p>
+                            </div>
                         </c:forEach>
                     </div>
                 </div>

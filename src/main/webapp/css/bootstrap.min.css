@@ -18,13 +18,23 @@
     to { transform: scale(1) rotate(360deg);}
 }
 
-.movieContainer {
+.movieContainerInner {
+    box-shadow: 8px 8px 15px #888;
+}
+
+.movieContainerOuter{
     position: relative;
     width: 200px;
     float: left;
-    margin-right: 20px;
+    margin-right: 25px;
     margin-top: 20px;
-    box-shadow: 8px 8px 15px #888;
+}
+
+.movieTitle {
+    position: relative;
+    padding-top: 5px;
+    font-size: 12px;
+    text-align: center;
 }
 
 .movieImg {

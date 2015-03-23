@@ -26,8 +26,20 @@ request.getSession().setAttribute("page", "collection");
         <div class="container">
             <h1>My Collection</h1>
             <c:forEach items="${ownedMovies}" var="Option">
-                    <p>${Option.title}</p>
-                    <p>${Option.imdbID}</p>
+                <div class="movieContainerOuter">
+                    <div class='movieContainerInner'>
+                        <a href='SingleMovie?imdbID=${Option.imdbID}'>
+                            <c:if test="${Option.Poster == 'N/A'}">
+                                <img class='movieImg' src='http://www.vernellbrownjr.com/SorryNoImageAvailable.jpg' alt='${Option.Title}' title='${Option.Title}'/>
+                                
+                            </c:if>
+                            <c:if test="${Option.Poster != 'N/A'}">
+                                <img class='movieImg' src='${Option.Poster}' alt='${Option.Title}' title='${Option.Title}'/>
+                            </c:if>
+                        </a>
+                    </div>
+                    <p class="movieTitle">${Option.Title}</p>
+                </div>
             </c:forEach>
         </div>
         <footer>

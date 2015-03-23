@@ -56,7 +56,8 @@ public class Collection extends HttpServlet {
                 Map<String, String> option = new HashMap<>();
 
                 option.put("imdbID", rs.getString("imdbId"));
-                option.put("title", rs.getString("movieTitle"));
+                option.put("Title", rs.getString("movieTitle"));
+                option.put("Poster", rs.getString("moviePoster"));
                 ownedMovies.add(option);
             }
         } catch (SQLException ex) {
