@@ -47,37 +47,41 @@ public class Search extends HttpServlet {
         search = search.replace(" ", "+");
         
 //      GET MOVIE LIST
-        URL url = new URL("http://www.omdbapi.com/?s=" + search + "&r=json");
+        try {
+            URL url = new URL("http://www.omdbapi.com/?s=" + search + "&r=json");
 //        
-        ObjectMapper mapper = new ObjectMapper();
-//        
-        Map<String, Object> map = mapper.readValue(url, Map.class);
-//
-        List list = (List)map.get("Search");
-        
-//      GET MOVIE ID's
-        List<Object> imdbIDs = new ArrayList<>();
-        for (Object item : list)
-        {
-              Map<String, Object> innerMap = (Map<String, Object>)item;
-              for (String key : innerMap.keySet())
-              {
-                  if (key.equals("imdbID")){
-                      imdbIDs.add(innerMap.get(key));
+            ObjectMapper mapper = new ObjectMapper();
+    //        
+            Map<String, Object> map = mapper.readValue(url, Map.class);
+    //
+            List list = (List)map.get("Search");
+
+    //      GET MOVIE ID's
+            List<Object> imdbIDs = new ArrayList<>();
+            for (Object item : list)
+            {
+                  Map<String, Object> innerMap = (Map<String, Object>)item;
+                  for (String key : innerMap.keySet())
+                  {
+                      if (key.equals("imdbID")){
+                          imdbIDs.add(innerMap.get(key));
+                      }
                   }
-              }
-        }
-        
-//      GET MOVIE POSTER LINKS
-        List<Object> results = new ArrayList<>();
-        for (Object item2: imdbIDs){
-            URL url2 = new URL("http://www.omdbapi.com/?i=" + item2 + "&r=json");
-            ObjectMapper mapper2 = new ObjectMapper();
-            Map<String, Object> map2 = mapper2.readValue(url2, Map.class);
-            results.add(map2);
+            }
+
+    //      GET MOVIE POSTER LINKS
+            List<Object> results = new ArrayList<>();
+            for (Object item2: imdbIDs){
+                URL url2 = new URL("http://www.omdbapi.com/?i=" + item2 + "&r=json");
+                ObjectMapper mapper2 = new ObjectMapper();
+                Map<String, Object> map2 = mapper2.readValue(url2, Map.class);
+                results.add(map2);
+                
+                request.setAttribute("search", results);
         }     
-        
-        request.setAttribute("search", results);
+        } catch (Exception e) {
+            request.setAttribute("search", "No Results");
+        }
         request.getRequestDispatcher("add_movie.jsp").forward(request, response);
     }
 

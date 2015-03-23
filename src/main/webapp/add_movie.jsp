@@ -43,6 +43,10 @@ request.getSession().setAttribute("page", "add_movie");
             </div>
             <div class="row">
                 <div class="col-md-12">
+                    <c:if test="${search == 'No Results'}">
+                        <h3 style="text-align: center;">No Results Found</h3>
+                    </c:if>
+                    <c:if test="${search != 'No Results'}">
                         <c:forEach items="${search}" var="movie">
                             <div class="movieContainerOuter">
                                 <div class='movieContainerInner'>
@@ -59,6 +63,7 @@ request.getSession().setAttribute("page", "add_movie");
                                 <p class="movieTitle">${movie.Title}</p>
                             </div>
                         </c:forEach>
+                    </c:if>
                     </div>
                 </div>
             </div>
