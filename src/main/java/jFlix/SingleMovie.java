@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -40,9 +41,7 @@ public class SingleMovie extends HttpServlet {
         String imdbID = request.getParameter("imdbID");
         
         URL url = new URL("http://www.omdbapi.com/?i=" + imdbID + "&plot=full");
-        
         ObjectMapper mapper = new ObjectMapper();
-        
         Map<String, Object> map = mapper.readValue(url, Map.class);
         
 //      GET Movie Info for Youtube
@@ -58,6 +57,20 @@ public class SingleMovie extends HttpServlet {
                       year = innerMap.get(key).toString();
                   }
               }
+              
+              
+               URL url1337 = new URL("http://api.themoviedb.org/3/find/" + imdbID 
+                        + "?api_key=ee5b93a565655155882df541850c7364&external_source=imdb_id");
+                ObjectMapper mapper1337 = new ObjectMapper();
+                Map<String, Object> map1337 = mapper1337.readValue(url1337, Map.class);
+                List<Object> movieResults = (List) map1337.get("movie_results");
+                
+                for (Object temp : movieResults) {
+                    Map<String, String> singleMovie = (Map) temp;
+                    String poster = "http://image.tmdb.org/t/p/w300";
+                    poster += singleMovie.get("poster_path");
+                    request.setAttribute("Poster", poster);
+                }
         
         title = title.trim();
         title = title.replace(" ", "-");

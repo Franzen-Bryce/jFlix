@@ -83,7 +83,7 @@ public class Search extends HttpServlet {
                 for (Object temp : movieResults) {
                     Map<String, String> singleMovie = (Map) temp;
                     Map<String, String> toAdd = new HashMap<>();
-                    String poster = "http://image.tmdb.org/t/p/w185";
+                    String poster= "http://image.tmdb.org/t/p/w185";
                     poster += singleMovie.get("poster_path");
                     String title = singleMovie.get("title");
                     toAdd.put("url", poster);
