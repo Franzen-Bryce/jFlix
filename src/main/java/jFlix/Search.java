@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +30,8 @@ import static javax.ws.rs.client.Entity.json;
 @WebServlet(name = "Search", urlPatterns = {"/Search"})
 public class Search extends HttpServlet {
 
+    
+    private List<Map> movies;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -68,14 +72,29 @@ public class Search extends HttpServlet {
             }
 
     //      GET MOVIE POSTER LINKS
-            List<Object> results = new ArrayList<>();
+            movies = new ArrayList<>();
             for (Object item2: imdbIDs){
-                URL url2 = new URL("http://api.themoviedb.org/3/find/" + item2 + "?api_key=ee5b93a565655155882df541850c7364&external_source=imdb_id");
+                URL url2 = new URL("http://api.themoviedb.org/3/find/" + item2 
+                        + "?api_key=ee5b93a565655155882df541850c7364&external_source=imdb_id");
                 ObjectMapper mapper2 = new ObjectMapper();
                 Map<String, Object> map2 = mapper2.readValue(url2, Map.class);
-                results.add(map2);
+                List<Object> movieResults = (List) map2.get("movie_results");
                 
-                request.setAttribute("search", results);
+                for (Object temp : movieResults) {
+                    Map<String, String> singleMovie = (Map) temp;
+                    Map<String, String> toAdd = new HashMap<>();
+                    String poster = "http://image.tmdb.org/t/p/w185";
+                    poster += singleMovie.get("poster_path");
+                    String title = singleMovie.get("title");
+                    toAdd.put("url", poster);
+                    toAdd.put("Title", title);
+                    String imdbID = (String) item2;
+                    toAdd.put("imdbID", imdbID);
+                    movies.add(toAdd);
+                }
+
+                
+                request.setAttribute("search", movies);
         }     
         } catch (Exception e) {
             request.setAttribute("search", "No Results");

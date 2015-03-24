@@ -56,7 +56,7 @@ request.getSession().setAttribute("page", "add_movie");
 
                                         </c:if>
                                         <c:if test="${movie.Poster != 'N/A'}">
-                                            <img class='movieImg' src='${movie.Poster}' alt='${movie.Title}' title='${movie.Title}'/>
+                                            <img class='movieImg' src='${movie.url}' alt='${movie.Title}' title='${movie.Title}'/>
                                         </c:if>
                                     </a>
                                 </div>
