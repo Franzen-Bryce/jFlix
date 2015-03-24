@@ -49,12 +49,12 @@ if(null == session.getAttribute("username")){
             <div class="row">
                 <div class="col-md-3" style="padding-top: 20px;">
                     <div class="singlePosterImage">
-                        <img class="img-responsive" src="${movie.Poster}" alt="${movie.Title}"/>
+                        <img class="img-responsive" src="${Poster}" alt="${movie.Title}"/>
                         <span id="movieTrailer" data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
                     </div>
                     <div class="row">
                         <div class="col-md-12" style="padding-top: 10px">
-                            <form action="AddMovie?poster=${movie.Poster}&Title=${movie.Title}
+                            <form action="AddMovie?poster=${Poster}&Title=${movie.Title}
                                   &genre=${movie.Genre}&imdb=${movie.imdbID}" method="POST">
                             <button type="submit" class="btn btn-primary" style="width: 100%; height: 60px">Add To My Collection</button>
                             </form>
