@@ -51,11 +51,11 @@ request.getSession().setAttribute("page", "add_movie");
                             <div class="movieContainerOuter">
                                 <div class='movieContainerInner'>
                                     <a href='SingleMovie?imdbID=${movie.imdbID}'>
-                                        <c:if test="${movie.Poster == 'N/A'}">
+                                        <c:if test="${movie.Poster == null}">
                                             <img class='movieImg' src='http://www.vernellbrownjr.com/SorryNoImageAvailable.jpg' alt='${movie.Title}' title='${movie.Title}'/>
 
                                         </c:if>
-                                        <c:if test="${movie.Poster != 'N/A'}">
+                                        <c:if test="${movie.Poster != null}">
                                             <img class='movieImg' src='${movie.url}' alt='${movie.Title}' title='${movie.Title}'/>
                                         </c:if>
                                     </a>
