@@ -59,10 +59,20 @@ if(null == session.getAttribute("username")){
                     </div>
                     <div class="row">
                         <div class="col-md-12" style="padding-top: 10px">
-                            <form action="AddMovie?poster=${Poster}&Title=${movie.Title}
+                             <c:if test="${collection == 'true'}">
+                                <form action="RemoveMovie&imdb=${movie.imdbID}" method="POST">
+                                <button type="submit" class="btn btn-danger" style="width: 100%; height: 60px">Remove From My Collection</button>
+                                </form><br>
+                                <form action="ShareMovie&imdb=${movie.imdbID}" method="POST">
+                                <button type="submit" class="btn btn-success" style="width: 100%; height: 60px">Lend Movie To Friend</button>
+                                </form>
+                            </c:if>
+                            <c:if test="${collection != 'true'}">
+                                <form action="AddMovie?poster=${Poster}&Title=${movie.Title}
                                   &genre=${movie.Genre}&imdb=${movie.imdbID}" method="POST">
-                            <button type="submit" class="btn btn-primary" style="width: 100%; height: 60px">Add To My Collection</button>
-                            </form>
+                                <button type="submit" class="btn btn-primary" style="width: 100%; height: 60px">Add To My Collection</button>
+                                </form>
+                            </c:if>
                         </div>
                     </div>
                 </div>
