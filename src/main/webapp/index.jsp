@@ -27,11 +27,9 @@
     <body>
         <div class="container">
             <div class='col-md-12 text-center'>
-                <h2 class='home-title'>
-                    Welcome to jFlix
-                </h2>
-                <a class='btn btn-default' href='login.jsp'>Sign In</a>
-                <a class='btn btn-default' href='register.jsp'>Register</a>
+                <img src="images/logo.png" alt='logo' class='home-logo'>
+                <a class='btn-home' href='login.jsp'>Sign In</a>
+                <a class='btn-home' href='register.jsp'>Register</a>
             </div>
         </div>
         <footer>
