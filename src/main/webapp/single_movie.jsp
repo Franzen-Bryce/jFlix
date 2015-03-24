@@ -16,6 +16,7 @@ if(null == session.getAttribute("username")){
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>${movie.Title}</title>
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+        <link href='css/jFlix.css' type='text/css' rel='stylesheet'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     </head>
     <body>
