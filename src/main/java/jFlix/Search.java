@@ -70,7 +70,7 @@ public class Search extends HttpServlet {
     //      GET MOVIE POSTER LINKS
             List<Object> results = new ArrayList<>();
             for (Object item2: imdbIDs){
-                URL url2 = new URL("http://www.omdbapi.com/?i=" + item2 + "&r=json");
+                URL url2 = new URL("http://api.themoviedb.org/3/find/" + item2 + "?api_key=ee5b93a565655155882df541850c7364&external_source=imdb_id");
                 ObjectMapper mapper2 = new ObjectMapper();
                 Map<String, Object> map2 = mapper2.readValue(url2, Map.class);
                 results.add(map2);
