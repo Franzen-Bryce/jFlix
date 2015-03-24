@@ -6,7 +6,6 @@
 package jFlix;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
@@ -20,8 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import static javax.ws.rs.client.Entity.json;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+
 
 /**
  *
