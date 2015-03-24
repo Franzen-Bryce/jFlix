@@ -51,7 +51,7 @@ request.getSession().setAttribute("page", "add_movie");
                         <c:forEach items="${search}" var="movie">
                             <div class="movieContainerOuter">
                                 <div class='movieContainerInner'>
-                                    <a href='SingleMovie?imdbID=${movie.imdbID}'>
+                                    <a href='SingleMovie?imdbID=${movie.imdbID}&collection=false'>
                                         <c:if test="${movie.url == 'http://image.tmdb.org/t/p/w185null'}">
                                             <img class='movieImg' src='http://www.vernellbrownjr.com/SorryNoImageAvailable.jpg' alt='${movie.Title}' title='${movie.Title}'/>
 

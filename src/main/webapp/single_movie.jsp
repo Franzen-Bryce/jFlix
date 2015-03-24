@@ -27,7 +27,12 @@ if(null == session.getAttribute("username")){
             <div class="backButton">
                 <div class="container">
                     <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-                    <p>Back To Search Results</p>
+                    <c:if test="${collection == 'true'}">
+                        <p>Back To Collection</p>
+                    </c:if>
+                    <c:if test="${collection != 'true'}">
+                        <p>Back To Search Results</p>
+                    </c:if>
                 </div>
             </div>
         </a>

@@ -29,7 +29,7 @@ request.getSession().setAttribute("page", "collection");
             <c:forEach items="${ownedMovies}" var="Option">
                 <div class="movieContainerOuter">
                     <div class='movieContainerInner'>
-                        <a href='SingleMovie?imdbID=${Option.imdbID}'>
+                        <a href='SingleMovie?imdbID=${Option.imdbID}&collection=true'>
                             <c:if test="${Option.Poster == 'N/A'}">
                                 <img class='movieImg' src='http://www.vernellbrownjr.com/SorryNoImageAvailable.jpg' alt='${Option.Title}' title='${Option.Title}'/>
                                 
