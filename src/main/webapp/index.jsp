@@ -23,6 +23,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
         <link href='css/jFlix.css' type='text/css' rel='stylesheet'>
+        <style>
+            body {
+                background-color: #c20202;
+            }
+        </style>
     </head>
     <body>
         <div class="container">

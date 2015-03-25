@@ -48,7 +48,8 @@
                     <div id="success"></div>
                     <!-- For success/fail messages -->
                     <button type="submit" class="btn btn-default">Login</button>
-                </form>
+                </form><br>
+                <p>Don't Have an Account?  Create One <a class="redLink" href="register.jsp">HERE</a></p>
             </div>
         </div>
         <footer>
