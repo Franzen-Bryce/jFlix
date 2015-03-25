@@ -71,7 +71,7 @@ if(null == session.getAttribute("username")){
                             <c:if test="${collection != 'true'}">
                                 <form action="AddMovie?poster=${Poster}&Title=${movie.Title}
                                   &genre=${movie.Genre}&imdb=${movie.imdbID}" method="POST">
-                                <button type="submit" class="btn btn-primary" style="width: 100%; height: 60px">Add To My Collection</button>
+                                <button type="submit" class="btn btn-primary" style="width: 100%; height: 60px"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>&nbsp;&nbsp;Add To My Collection</button>
                                 </form>
                             </c:if>
                         </div>
