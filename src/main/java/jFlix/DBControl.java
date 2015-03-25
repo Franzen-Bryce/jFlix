@@ -90,4 +90,24 @@ public class DBControl {
         
         return found;
     }
+    public boolean checkIfOwned(int userId, String imdbId) {
+        
+        Connection conn = connectDB();
+         try {
+             Statement stmt = conn.createStatement();
+             String query = "SELECT imdbId FROM ownership WHERE userId=" + userId;
+             
+             ResultSet rs = stmt.executeQuery(query);
+             
+             
+             while (rs.next())
+                 if (imdbId.equals(rs.getString("imdbId")))
+                     return true;
+         } catch (SQLException ex) {
+             Logger.getLogger(DBControl.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        
+        
+        return false;
+    }
 }

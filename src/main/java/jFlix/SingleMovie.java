@@ -104,7 +104,9 @@ public class SingleMovie extends HttpServlet {
         request.setAttribute("trailerId", trailerId);
         request.setAttribute("movie", map);
         
-        if (request.getParameter("collection").equals("true"))
+        boolean movieOwned = new DBControl().checkIfOwned((int)request.getSession().getAttribute("id"), imdbID);
+        
+        if (movieOwned)
             request.setAttribute("collection", "true");
         else
             request.setAttribute("collection", "false");
