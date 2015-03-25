@@ -62,10 +62,10 @@ if(null == session.getAttribute("username")){
                              <c:if test="${collection == 'true'}">
                                 <br>
                                 <form action="ShareMovie&imdb=${movie.imdbID}" method="POST">
-                                <button type="submit" class="btn btn-success" style="width: 100%; height: 60px">Checkout to Friend&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></button>
+                                <button type="submit" class="btn btn-primary" style="width: 100%; height: 60px">Checkout to Friend&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></button>
                                 </form><br>
                                 <form action="RemoveMovie&imdb=${movie.imdbID}" method="POST">
-                                <button type="submit" class="btn btn-primary" style="width: 100%; height: 60px"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp;Remove From Collection</button>
+                                <button type="submit" class="btn btn-success" style="width: 100%; height: 50px"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp;Remove From Collection</button>
                                 </form>
                             </c:if>
                             <c:if test="${collection != 'true'}">
