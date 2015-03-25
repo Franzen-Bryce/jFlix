@@ -21,6 +21,7 @@
     <head>
         <title>Register | jFlix</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, maximum-scale=1">
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
         <link href='css/jFlix.css' type='text/css' rel='stylesheet'>
     </head>
@@ -61,7 +62,8 @@
                     <div id="success"></div>
                     <!-- For success/fail messages -->
                     <button type="submit" class="btn btn-default">Register</button>
-                </form>
+                </form><br>
+                <p>Already Have an Account?  Login <a class="redLink" href="login.jsp">HERE</a></p>
             </div>
         </div>
         <footer>

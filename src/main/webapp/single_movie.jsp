@@ -14,6 +14,7 @@ if(null == session.getAttribute("username")){
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, maximum-scale=1">
         <title>${movie.Title}</title>
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
         <link href='css/jFlix.css' type='text/css' rel='stylesheet'>
@@ -28,10 +29,10 @@ if(null == session.getAttribute("username")){
                 <div class="container">
                     <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
                     <c:if test="${collection == 'true'}">
-                        <p>Back To Collection</p>
+                        <span>Back to Collection</span>
                     </c:if>
                     <c:if test="${collection != 'true'}">
-                        <p>Back To Search Results</p>
+                        <span>Back to Search Results</span>
                     </c:if>
                 </div>
             </div>
@@ -43,7 +44,7 @@ if(null == session.getAttribute("username")){
                 <div class="modal-content">
                   <div class="modal-body">
 <!--                      <button type="button" style="display: inline-block; float: right;" class="btn btn-danger" data-dismiss="modal">Close</button>-->
-                    <iframe width="854" height="510" src="https://www.youtube.com/embed/${trailerId}" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="854" height="510" src="https://www.youtube.com/embed/${trailerId}?rel=0" frameborder="0" allowfullscreen></iframe>
 <!--                  </div>
                   <div class="modal-footer">-->
                   </div>
@@ -60,17 +61,18 @@ if(null == session.getAttribute("username")){
                     <div class="row">
                         <div class="col-md-12" style="padding-top: 10px">
                              <c:if test="${collection == 'true'}">
-                                <form action="RemoveMovie&imdb=${movie.imdbID}" method="POST">
-                                <button type="submit" class="btn btn-danger" style="width: 100%; height: 60px">Remove From My Collection</button>
-                                </form><br>
+                                <br>
                                 <form action="ShareMovie&imdb=${movie.imdbID}" method="POST">
-                                <button type="submit" class="btn btn-success" style="width: 100%; height: 60px">Lend Movie To Friend</button>
+                                <button type="submit" class="btn btn-primary" style="width: 100%; height: 60px">Checkout to Friend&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></button>
+                                </form><br>
+                                <form action="RemoveMovie&imdb=${movie.imdbID}" method="POST">
+                                <button type="submit" class="btn btn-success" style="width: 100%; height: 50px"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp;Remove From Collection</button>
                                 </form>
                             </c:if>
                             <c:if test="${collection != 'true'}">
                                 <form action="AddMovie?poster=${Poster}&Title=${movie.Title}
                                   &genre=${movie.Genre}&imdb=${movie.imdbID}" method="POST">
-                                <button type="submit" class="btn btn-primary" style="width: 100%; height: 60px">Add To My Collection</button>
+                                <button type="submit" class="btn btn-primary" style="width: 100%; height: 60px"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>&nbsp;&nbsp;Add To My Collection</button>
                                 </form>
                             </c:if>
                         </div>
@@ -79,20 +81,17 @@ if(null == session.getAttribute("username")){
                 <div class="col-md-9">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2>${movie.Title}</h2>
+                            <h2>${movie.Title} (${movie.Year})</h2>
                         </div>
                     </div>
                     <div class="row" style="background-color: #d2d2d2; padding: 20px 0px;">
                         <div class="col-md-3">
                             <b>IMDB User Rating:</b> ${movie.imdbRating}
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <b>Genre:</b> ${movie.Genre}
                         </div>
-                        <div class="col-md-2">
-                            <b>Year:</b> ${movie.Year}
-                        </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <b>Maturity Rating:</b> ${movie.Rated}
                         </div>
                     </div>
@@ -108,15 +107,15 @@ if(null == session.getAttribute("username")){
                     </div>
                     <div class="row" style="background-color: #d2d2d2; padding: 20px 0px;">
                         <div class="col-md-3">
-                            <h3>Director:</h3>
+                            <b>Director:</b><br>
                             <p>${movie.Director}</p>
                         </div>
                         <div class="col-md-5">
-                            <h3>Writer:</h3>
+                            <b>Writer:</b><br>
                             <p>${movie.Writer}</p>
                         </div>
                         <div class="col-md-4">
-                            <h3>Awards:</h3>
+                            <b>Awards:</b><br>
                             <p>${movie.Awards}</p>
                         </div>
                     </div>

@@ -76,7 +76,7 @@ public class SingleMovie extends HttpServlet {
         title = title.replace(" ", "-");
         
         // GET MOVIE Youtube ID
-        URL url2 = new URL("http://gdata.youtube.com/feeds/api/videos?q=" + title + "-official-trailer-" + year + "&start-index=1&max-results=1&v=2&alt=json&hd");
+        URL url2 = new URL("http://gdata.youtube.com/feeds/api/videos?q=" + title + "official-movie-trailer-" + year + "-english&start-index=1&max-results=1&v=2&alt=json&hd");
   
         ObjectMapper mapper2 = new ObjectMapper();
         
