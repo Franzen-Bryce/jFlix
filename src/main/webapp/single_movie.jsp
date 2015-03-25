@@ -88,10 +88,10 @@ if(null == session.getAttribute("username")){
                         <div class="col-md-3">
                             <b>IMDB User Rating:</b> ${movie.imdbRating}
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <b>Genre:</b> ${movie.Genre}
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <b>Maturity Rating:</b> ${movie.Rated}
                         </div>
                     </div>
