@@ -43,7 +43,7 @@ if(null == session.getAttribute("username")){
                 <div class="modal-content">
                   <div class="modal-body">
 <!--                      <button type="button" style="display: inline-block; float: right;" class="btn btn-danger" data-dismiss="modal">Close</button>-->
-                    <iframe width="854" height="510" src="https://www.youtube.com/embed/${trailerId}" frameborder="0" allowfullscreen></iframe>
+                    <iframe width="854" height="510" src="https://www.youtube.com/embed/${trailerId}?rel=0" frameborder="0" allowfullscreen></iframe>
 <!--                  </div>
                   <div class="modal-footer">-->
                   </div>
