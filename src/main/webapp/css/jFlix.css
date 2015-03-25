@@ -14,7 +14,8 @@ body {
     display: block;
     max-width: 600px;
     width: 90%;
-    margin: 100px auto 50px;
+    margin: 0px auto 50px;
+    padding-top: 100px;
 }
 
 .btn-home {
