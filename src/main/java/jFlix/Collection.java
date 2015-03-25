@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,18 +53,31 @@ public class Collection extends HttpServlet {
             
             ResultSet rs = stmt.executeQuery(query);
             
+            List<String> list = new ArrayList<>();
+            List<Map> temp = new ArrayList<>();
             while (rs.next()) {
                 Map<String, String> option = new HashMap<>();
 
                 option.put("imdbID", rs.getString("imdbId"));
                 option.put("Title", rs.getString("movieTitle"));
                 option.put("Poster", rs.getString("moviePoster"));
-                ownedMovies.add(option);
+                list.add(rs.getString("movieTitle"));
+                temp.add(option);
+            }
+            Collections.sort(list);
+            for ( int i = 0; i < list.size(); i++) {
+                System.out.println(list.get(i));
+                for (int j = 0; j < temp.size(); j++) {
+                    if (temp.get(j).get("Title").equals(list.get(i))) {
+                        ownedMovies.add(temp.get(j));
+                        System.out.println(temp.get(j).get("Title"));
+                    }
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(Collection.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+//        Collections.sort(ownedMovies);
         request.setAttribute("ownedMovies", ownedMovies);
 //        String url = "collection.jsp";
 //        response.sendRedirect(url);
