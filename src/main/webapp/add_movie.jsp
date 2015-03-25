@@ -15,6 +15,7 @@ request.getSession().setAttribute("page", "add_movie");
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, maximum-scale=1">
         <title>Add Movie</title>
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
         <link href='css/jFlix.css' type='text/css' rel='stylesheet'>
