@@ -3,6 +3,7 @@
     Created on : Mar 10, 2015, 3:16:01 PM
     Author     : Bryce
 --%>
+<%@page import="java.io.IOException"%>
 <%
 if(null == session.getAttribute("username")){  
   response.sendRedirect("index.jsp");

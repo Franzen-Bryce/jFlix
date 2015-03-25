@@ -70,9 +70,7 @@ public class AddMovie extends HttpServlet {
         }
 
         
-        response.sendRedirect("Collection");
-        
-        
+        response.sendRedirect("SingleMovie?imdbID=" + imdbId + "&collection=false");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -24,16 +24,11 @@ if(null == session.getAttribute("username")){
         <header>
             <%@include file="/modules/nav.html"%>
         </header>
-        <a href="javascript:history.back()">
+            <a href="javascript:history.back()">
             <div class="backButton">
                 <div class="container">
                     <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-                    <c:if test="${collection == 'true'}">
-                        <span>Back to Collection</span>
-                    </c:if>
-                    <c:if test="${collection != 'true'}">
-                        <span>Back to Search Results</span>
-                    </c:if>
+                        <span>${backButton}</span>
                 </div>
             </div>
         </a>
@@ -60,7 +55,7 @@ if(null == session.getAttribute("username")){
                     </div>
                     <div class="row">
                         <div class="col-md-12" style="padding-top: 10px">
-                             <c:if test="${collection == 'true'}">
+                             <c:if test="${owned == 'true'}">
                                 <br>
                                 <form action="ShareMovie?imdb=${movie.imdbID}" method="POST">
                                 <button type="submit" class="btn btn-primary" style="width: 100%; height: 60px">Checkout to Friend&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></button>
@@ -69,7 +64,7 @@ if(null == session.getAttribute("username")){
                                 <button type="submit" class="btn btn-success" style="width: 100%; height: 50px"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp;Remove From Collection</button>
                                 </form>
                             </c:if>
-                            <c:if test="${collection != 'true'}">
+                            <c:if test="${owned != 'true'}">
                                 <form action="AddMovie?poster=${Poster}&Title=${movie.Title}
                                   &genre=${movie.Genre}&imdb=${movie.imdbID}" method="POST">
                                 <button type="submit" class="btn btn-primary" style="width: 100%; height: 60px"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>&nbsp;&nbsp;Add To My Collection</button>

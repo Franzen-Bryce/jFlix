@@ -39,6 +39,7 @@ public class SingleMovie extends HttpServlet {
             throws ServletException, IOException {
         
         String imdbID = request.getParameter("imdbID");
+        String owned = request.getParameter("collection");
         
         URL url = new URL("http://www.omdbapi.com/?i=" + imdbID + "&plot=full");
         ObjectMapper mapper = new ObjectMapper();
@@ -106,10 +107,17 @@ public class SingleMovie extends HttpServlet {
         
         boolean movieOwned = new DBControl().checkIfOwned((int)request.getSession().getAttribute("id"), imdbID);
         
-        if (movieOwned)
-            request.setAttribute("collection", "true");
-        else
-            request.setAttribute("collection", "false");
+        request.setAttribute("backButton", "Back to Search Results");
+        if (movieOwned){
+            request.setAttribute("owned", "true");
+            
+            if (owned.equals("true")) {
+                request.setAttribute("backButton", "Back to Collection");
+            }
+        }
+        else {
+            request.setAttribute("owned", "false");
+        }
         request.getRequestDispatcher("single_movie.jsp").forward(request, response);
     }
 
