@@ -66,11 +66,11 @@ public class Collection extends HttpServlet {
             }
             Collections.sort(list);
             for ( int i = 0; i < list.size(); i++) {
-                System.out.println(list.get(i));
+//                System.out.println(list.get(i));
                 for (int j = 0; j < temp.size(); j++) {
                     if (temp.get(j).get("Title").equals(list.get(i))) {
                         ownedMovies.add(temp.get(j));
-                        System.out.println(temp.get(j).get("Title"));
+//                        System.out.println(temp.get(j).get("Title"));
                     }
                 }
             }

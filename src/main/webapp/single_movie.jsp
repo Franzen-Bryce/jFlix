@@ -47,6 +47,22 @@ if(null == session.getAttribute("username")){
               </div>
             </div>
             <!-- End Modal For Trailer-->
+            <!--Modal for Sharing-->
+            <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-body">
+                      <form action="ShareMovie?imdb=${movie.imdbID}" method="POST">
+                          <span style="color:white">Shared with:</span> <input type="text" name="sharedName" />
+                          <button type="submit" value="Submit">Share</button>
+                      </form>
+                  </div>
+                  <div class="modal-footer">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--End Modal for Sharing-->
             <div class="row">
                 <div class="col-md-3" style="padding-top: 20px;">
                     <div class="singlePosterImage">
@@ -57,9 +73,8 @@ if(null == session.getAttribute("username")){
                         <div class="col-md-12" style="padding-top: 10px">
                              <c:if test="${owned == 'true'}">
                                 <br>
-                                <form action="ShareMovie?imdb=${movie.imdbID}" method="POST">
-                                <button type="submit" class="btn btn-primary" style="width: 100%; height: 60px">Checkout to Friend&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></button>
-                                </form><br>
+                                <button data-toggle="modal" data-target="#shareModal" class="btn btn-primary" style="width: 100%; height: 60px">Checkout to Friend&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></button>
+                                <br> <br />
                                 <form action="RemoveMovie?imdb=${movie.imdbID}" method="POST">
                                 <button type="submit" class="btn btn-success" style="width: 100%; height: 50px"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp;Remove From Collection</button>
                                 </form>
