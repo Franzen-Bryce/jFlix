@@ -52,16 +52,17 @@ request.getSession().setAttribute("page", "settings");
                     <h2>Display Name</h2>
                     <form action="UserSettings" method="POST">
                         <div class="control-group form-group">
-                            <div class="controls">
-                                <label>Display Name:</label>
+                            <label>Display Name:</label>
+                            <div class="input-group">
                                 <input type="text" class="form-control" id="displayName" name="displayName" value="${sessionScope.displayname}" required>
-                                <p class="help-block"></p>
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary userSettingsButton">Update Name</button>
+                                </span>
                             </div>
                         </div>
                         <input type="hidden" name="form" value="Name"/>
                         <div id="success"></div>
                         <!-- For success/fail messages -->
-                        <button type="submit" class="btn btn-primary userSettingsButton">Update Your Display Name</button>
                     </form><br><br>
                 </div>
                 <div class='col-md-2'></div>
@@ -75,15 +76,17 @@ request.getSession().setAttribute("page", "settings");
                             </div>
                         </div>
                         <div class="control-group form-group">
-                            <div class="controls">
-                                <label>Confirm New Password:</label>
+                            <label>Confirm New Password:</label>
+                            <div class="input-group">
                                 <input type="password" class="form-control" id="password2" name="password2" required>
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-primary userSettingsButton">Update Password</button>
+                                </span>
                             </div>
                         </div>
                         <input type="hidden" name="form" value="Password"/>
                         <div id="success"></div>
                         <!-- For success/fail messages -->
-                        <button type="submit" class="btn btn-primary userSettingsButton">Update Your Account Password</button>
                     </form><br>
                 </div>
             </row>
@@ -93,15 +96,17 @@ request.getSession().setAttribute("page", "settings");
                     <h2>Delete User Account</h2>
                     <form action="UserSettings" method="POST">
                         <div class="control-group form-group">
-                            <div class="controls">
-                                <label>(This CANNOT be reversed) Confirm account deletion by typing: "Yes. Delete ${sessionScope.username}"</label>
-                                <input type="text" onkeyup="checkDeleteValue()" class="form-control" id="deleteConfirm" name="deleteConfirm" required>
+                            <label>Confirm account deletion by typing, "<span style='color: #c20202'>Yes. Delete ${sessionScope.username}</span>"</label>
+                            <div class="input-group">
+                                <input type="text" onkeyup="checkDeleteValue()" class="form-control" id="deleteConfirm" name="deleteConfirm" required placeholder='This action is permanent and cannot be reversed'>
+                                <span class="input-group-btn">
+                                    <button type="submit" id="deleteConfirmButton" class="btn btn-default userSettingsButton" disabled>Permanently Remove My Account</button>
+                                </span>
                             </div>
                         </div>
                         <input type="hidden" name="form" value="Permanently Remove"/>
                         <div id="success"></div>
                         <!-- For success/fail messages -->
-                        <button type="submit" id="deleteConfirmButton" class="btn btn-default userSettingsButton" disabled>Permanently Remove My Account</button>
                     </form><br>
                 </div>
             </row>
