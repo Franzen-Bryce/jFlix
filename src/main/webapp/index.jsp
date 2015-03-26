@@ -61,7 +61,7 @@
         </div>
         <div class='col-md-12 text-center alternate-div'>
             <div class="col-md-4">
-                <h1>A revolutionary step towards managing your movie collection <b>STARTS HERE</b></h1>
+                <h1>A revolutionary step towards managing your movie collection <span class='starts-here lobster'>starts here</span></h1>
             </div>
             <div class="col-md-8">
                 <img class="img-responsive" src="images/screenExample.png" alt="Collection Screen"/>

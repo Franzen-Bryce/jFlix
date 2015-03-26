@@ -30,8 +30,8 @@
             <%@include file="/modules/nav.html"%>
         </header>
         <div class="container">
-            <div class="col-md-5">
-                <h1>Login:</h1>
+            <div class="col-md-4 col-md-offset-4">
+                <h1 class="page-title">Login</h1>
                 <form action="Login" method="POST" name="userLogin">
                     <div class="control-group form-group">
                         <div class="controls">
@@ -48,9 +48,12 @@
                     </div>
                     <div id="success"></div>
                     <!-- For success/fail messages -->
-                    <button type="submit" class="btn btn-default">Login</button>
-                </form><br>
-                <p>Don't Have an Account?  Create One <a class="redLink" href="register.jsp">HERE</a></p>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-default">Login</button>
+                    </div>
+                </form>
+                <p class="register-here text-center">Don't have an account?<br>
+                   Create one <a href="register.jsp">HERE</a></p>
             </div>
         </div>
         <footer>
