@@ -5,15 +5,15 @@
  */
 package jFlix;
 
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.Connection;
-import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,20 +39,68 @@ public class UserSettings extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Connection conn = new DBControl().connectDB();
+        int userId = (Integer) request.getSession().getAttribute("id");
         
-        try {
-            Statement stmt = conn.createStatement();
+        //Change Display Name
+        if (request.getParameter("form").equals("Name")){
+            String displayName = request.getParameter("displayName");
             
-            String query = "UPDATE ...";
+            //update display name in database
+            Connection conn = new DBControl().connectDB();
+            try {
+                Statement stmt = conn.createStatement();
+
+                String query = "UPDATE user SET displayname='"+ displayName + "' WHERE id='" + userId + "'";
+                stmt.executeUpdate(query);
+                
+                request.getSession().setAttribute("displayname", displayName);
+            } 
+            catch (SQLException ex) {
+                Logger.getLogger(AddMovie.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            response.sendRedirect("userSettings.jsp");
+        }
+        
+        //Change User Password
+        if (request.getParameter("form").equals("Password")){
+            String newPassword1 = request.getParameter("password");
+            String newPassword2 = request.getParameter("password2");
             
-            ResultSet rs = stmt.executeQuery(query);
+            //update password in database
             
-        }catch (Exception e) {
+            response.sendRedirect("userSettings.jsp");
+        }
         
-        }    
-        
-        
+        //Delete User From Database
+        if (request.getParameter("form").equals("Permanently Remove")){
+            
+            String checkDelete = request.getParameter("deleteConfirm");
+            
+            //double check correct statement was entered
+            if (checkDelete.equals("Yes. Delete " + request.getSession().getAttribute("username"))){
+            
+                Connection conn = new DBControl().connectDB();
+                try {
+                    Statement stmt = conn.createStatement();
+
+                    String query = "DELETE FROM user WHERE id='" + userId + "'";
+                    stmt.executeUpdate(query);
+                    
+                    request.getSession().removeAttribute("username");
+                    request.getSession().removeAttribute("displayname");
+                    request.getSession().removeAttribute("id");
+                
+                    response.sendRedirect("index.jsp");
+                } 
+                catch (SQLException ex) {
+                    Logger.getLogger(AddMovie.class.getName()).log(Level.SEVERE, null, ex);
+                    response.sendRedirect("userSettings.jsp");
+                }
+            }
+            else {
+                response.sendRedirect("userSettings.jsp");
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

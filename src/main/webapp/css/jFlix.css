@@ -48,3 +48,7 @@ body {
 .redLink:hover {
     color: #660000;
 }
+
+.userSettingsButton {
+    float: right;
+}
