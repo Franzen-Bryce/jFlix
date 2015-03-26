@@ -75,9 +75,11 @@ public class UserSettings extends HttpServlet {
                 stmt.executeUpdate(query);
                 
                 request.getSession().setAttribute("displayname", displayName);
+                request.getSession().setAttribute("message", "Display Name Updated Successfully.");
             } 
             catch (SQLException ex) {
                 Logger.getLogger(AddMovie.class.getName()).log(Level.SEVERE, null, ex);
+                request.getSession().setAttribute("message", "Error Updating Display Name.");
             }
             response.sendRedirect("userSettings.jsp");
         }
@@ -98,9 +100,12 @@ public class UserSettings extends HttpServlet {
 
                     String query = "UPDATE user SET password='"+ hashedPass + "' WHERE id='" + userId + "'";
                     stmt.executeUpdate(query);
+                    
+                    request.getSession().setAttribute("message", "Password Updated Successfully.");
                 } 
                 catch (SQLException ex) {
                     Logger.getLogger(AddMovie.class.getName()).log(Level.SEVERE, null, ex);
+                    request.getSession().setAttribute("message", "Error Changing Password.");
                 }
             }
             

@@ -44,7 +44,12 @@ request.getSession().setAttribute("page", "settings");
             <row>
                 <div class='col-md-12'>
                     <h1>User Settings: ${sessionScope.username}</h1>
-                    <hr>
+                    <br>
+                </div>
+            </row>
+            <row>
+                <div class='col-md-12 text-center' style='background-color: #c20202; color: #fff; border-radius: 5px;'>
+                    ${sessionScope.message}
                 </div>
             </row>
             <row>
@@ -61,8 +66,6 @@ request.getSession().setAttribute("page", "settings");
                             </div>
                         </div>
                         <input type="hidden" name="form" value="Name"/>
-                        <div id="success"></div>
-                        <!-- For success/fail messages -->
                     </form><br><br>
                 </div>
                 <div class='col-md-2'></div>
@@ -85,14 +88,12 @@ request.getSession().setAttribute("page", "settings");
                             </div>
                         </div>
                         <input type="hidden" name="form" value="Password"/>
-                        <div id="success"></div>
-                        <!-- For success/fail messages -->
                     </form><br>
                 </div>
             </row>
             <row>
                 <div class='col-md-12'>
-                    <br><hr>
+                    <br><hr style='height: 1px; background-color: #c20202'>
                     <h2>Delete User Account</h2>
                     <form action="UserSettings" method="POST">
                         <div class="control-group form-group">
@@ -105,8 +106,6 @@ request.getSession().setAttribute("page", "settings");
                             </div>
                         </div>
                         <input type="hidden" name="form" value="Permanently Remove"/>
-                        <div id="success"></div>
-                        <!-- For success/fail messages -->
                     </form><br>
                 </div>
             </row>
@@ -116,3 +115,4 @@ request.getSession().setAttribute("page", "settings");
         </footer>
     </body>
 </html>
+<%request.getSession().removeAttribute("message");%>
