@@ -2,14 +2,15 @@
     Created on : Mar 24, 2015, 3:45:59 PM
     Author     : paul
 */
-@import url(http://fonts.googleapis.com/css?family=Lobster);
+@import url(http://fonts.googleapis.com/css?family=Sansita+One|Arimo);
 
 body {
     background-color: #ffffff;
-    font-family: Georgia, sans-serif;
+    font-family: Arimo, sans-serif;
 }
 
 label {
+    font-family: Georgia, sans-serif;
     font-weight: normal;
     font-size: 18px;
 }
@@ -70,14 +71,14 @@ a:hover, a:focus {
 }
 
 .page-title {
-    font-family: Lobster, Georgia, serif;
-    font-size: 75px;
+    font-family: Sansita One, Georgia, serif;
+    font-size: 60px;
     text-align: center;
     margin-bottom: 45px;
 }
 
 .lobster {
-    font-family: Lobster;
+    font-family: Sansita One;
 }
 
 .register-here {

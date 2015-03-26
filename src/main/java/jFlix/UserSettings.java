@@ -66,7 +66,10 @@ public class UserSettings extends HttpServlet {
             String newPassword1 = request.getParameter("password");
             String newPassword2 = request.getParameter("password2");
             
-            //update password in database
+            if (newPassword1.equals(newPassword2)){
+                //update password in database
+                //Still needs to be implimented __________________________________
+            }
             
             response.sendRedirect("userSettings.jsp");
         }
