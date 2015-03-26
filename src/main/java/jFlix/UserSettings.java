@@ -6,9 +6,13 @@
 package jFlix;
 
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
+import static jFlix.Register.md5;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,6 +31,22 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "UserSettings", urlPatterns = {"/UserSettings"})
 public class UserSettings extends HttpServlet {
 
+    public static String md5(String input) {
+        String md5 = null;
+        if(null == input) return null;
+        try {
+            //Create MessageDigest object for MD5
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            //Update input string in message digest
+            digest.update(input.getBytes(), 0, input.length());
+            //Converts message digest value in base 16 (hex) 
+            md5 = new BigInteger(1, digest.digest()).toString(16);
+        } catch (NoSuchAlgorithmException e) {
+        }
+        return md5;
+    }
+    
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,6 +56,7 @@ public class UserSettings extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -68,7 +89,19 @@ public class UserSettings extends HttpServlet {
             
             if (newPassword1.equals(newPassword2)){
                 //update password in database
-                //Still needs to be implimented __________________________________
+                String hashedPass = md5(newPassword1);
+                
+                //update password in database
+                Connection conn = new DBControl().connectDB();
+                try {
+                    Statement stmt = conn.createStatement();
+
+                    String query = "UPDATE user SET password='"+ hashedPass + "' WHERE id='" + userId + "'";
+                    stmt.executeUpdate(query);
+                } 
+                catch (SQLException ex) {
+                    Logger.getLogger(AddMovie.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             
             response.sendRedirect("userSettings.jsp");
