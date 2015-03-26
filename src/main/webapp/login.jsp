@@ -46,7 +46,9 @@
                             <input type="password" class="form-control" id="password" name="password" required data-validation-required-message="Please enter your password.">
                         </div>
                     </div>
-                    <div id="success"></div>
+                    <div class="text-center" id="success">
+                        <p>${message}</p>
+                    </div>
                     <!-- For success/fail messages -->
                     <div class="text-center">
                         <button type="submit" class="btn btn-default">Login</button>

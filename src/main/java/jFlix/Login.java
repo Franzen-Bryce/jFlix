@@ -97,7 +97,7 @@ public class Login extends HttpServlet {
                    
                    
                    if (rs.getString("username").equals(user)) { //only enters if it finds the username
-//                       out.println("I FOUND A USER");
+                       System.out.println("I FOUND A USER");
                        
                        if (rs.getString("password").equals(hashPass)) { //enters if pswd equal
                            //sets the session for the user and then redirects to their collections
@@ -113,6 +113,7 @@ public class Login extends HttpServlet {
                        else {
                            request.setAttribute("message", "Password Incorrect");
                            message = true;
+                           break;
                        }
                    }
                    else {
@@ -125,7 +126,7 @@ public class Login extends HttpServlet {
                conn.close();
                
                if (message){
-                   request.getRequestDispatcher("index.jsp").forward(request, response);
+                   request.getRequestDispatcher("login.jsp").forward(request, response);
                }  } catch (SQLException ex) {
                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
            }
