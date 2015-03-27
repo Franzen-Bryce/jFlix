@@ -43,9 +43,15 @@ request.getSession().setAttribute("page", "collection");
                             <c:if test="${Option.shared == true}">
                                 <div class="sharedBanner">
                                     <span>Shared</span>
-                                    <!--<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>-->
                                 </div>
-                                <div class="sharedName">${Option.sharedName}</div>
+                                <div class="sharedName">
+                                    <span style="float: left; width: 139px; padding: 2px 10px; text-align: left;">${Option.sharedName}</span>
+                                    <span style="float: right; margin-right: 5px; width: 60px;">
+                                        <form action="ShareMovie?imdb=${Option.imdbID}" method="POST">
+                                         <button style="padding: 2px 5px; background-color: #660000;" type="submit" name="button" value="return" class="btn btn-primary" style="width: 100%; height: 60px">Return</button>
+                                     </form>
+                                    </span>
+                                </div>
                             </c:if>
                         </a>
                     </div>
