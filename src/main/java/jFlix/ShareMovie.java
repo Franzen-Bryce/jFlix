@@ -7,6 +7,11 @@ package jFlix;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,9 +39,35 @@ public class ShareMovie extends HttpServlet {
         
         String sharedName = request.getParameter("sharedName");
         String imdbID = request.getParameter("imdb");
-        System.out.println(imdbID);
-        System.out.println(sharedName);
-        System.out.println("I made it to sharing");
+        String button = request.getParameter("button");
+        System.out.println(button);
+        if (null == button)
+            button = "";
+                System.out.println(button);
+
+        Connection conn = new DBControl().connectDB();
+        try {
+            Statement stmt = conn.createStatement();
+            
+            String query;
+            if (button.equals("return")) {
+                query = "UPDATE ownership SET sharedName=\"\", shared=0 WHERE imdbId=\""
+                        +imdbID+"\" AND userId="
+                        +request.getSession().getAttribute("id")+";";
+            }
+            else {
+                query = "UPDATE ownership SET sharedName=\""+ sharedName 
+                        +"\", shared=1 WHERE imdbId=\""+imdbID+"\" AND userId="
+                        +request.getSession().getAttribute("id")+";";
+            }
+            
+            System.out.println(query);
+            stmt.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(ShareMovie.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        response.sendRedirect("Collection");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

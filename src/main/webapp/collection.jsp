@@ -30,8 +30,10 @@ request.getSession().setAttribute("page", "collection");
             <c:forEach items="${ownedMovies}" var="Option">
                 <div class="movieContainerOuter">
                     <div class='movieContainerInner'>
-                        <a href='SingleMovie?imdbID=${Option.imdbID}&collection=true'>
+                        <a href='SingleMovie?imdbID=${Option.imdbID}&collection=true&shared=${Option.shared}'>
                             <c:if test="${Option.Poster == 'N/A'}">
+                                <!--Need to use the shared variable in Option to-->
+                                <!--Make the little corner lent appear-->
                                 <img class='movieImg' src='http://www.vernellbrownjr.com/SorryNoImageAvailable.jpg' alt='${Option.Title}' title='${Option.Title}'/>
                                 
                             </c:if>
@@ -41,6 +43,9 @@ request.getSession().setAttribute("page", "collection");
                         </a>
                     </div>
                     <p class="movieTitle">${Option.Title}</p>
+                    <c:if test="${Option.shared == false}">
+                                    <p>not Shared</p>
+                                </c:if>
                 </div>
             </c:forEach>
         </div>

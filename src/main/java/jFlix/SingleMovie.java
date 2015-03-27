@@ -40,6 +40,8 @@ public class SingleMovie extends HttpServlet {
         
         String imdbID = request.getParameter("imdbID");
         String owned = request.getParameter("collection");
+        String shared = request.getParameter("shared");
+        request.setAttribute("shared", shared);
         
         URL url = new URL("http://www.omdbapi.com/?i=" + imdbID + "&plot=full");
         ObjectMapper mapper = new ObjectMapper();
