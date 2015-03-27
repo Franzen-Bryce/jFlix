@@ -54,7 +54,7 @@ if(null == session.getAttribute("username")){
                     <h1 style="color: #fff;">Checkout to Friend</h1><br>
                       <form action="ShareMovie?imdb=${movie.imdbID}" method="POST">
                             <div class="control-group form-group">
-                            <label style="color: #fff;">Name of Friend Borrowing Movie:</label>
+                            <label style="color: #fff;">Name of Friend:</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="sharedName" name="sharedName" required>
                                 <span class="input-group-btn">
