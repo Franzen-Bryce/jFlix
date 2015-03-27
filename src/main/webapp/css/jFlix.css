@@ -84,3 +84,27 @@ a:hover, a:focus {
 .register-here {
     margin: 30px;
 }
+
+.sharedName {
+    position: absolute;
+    bottom: 45px;
+    text-align: center;
+    background-color: #c20202;
+    color: #fff;
+    text-decoration: none;
+    width: 100%;
+    padding: 5px 0px;
+}
+
+.sharedBanner {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: #c20202;
+    color: #fff;
+    text-decoration: none;
+    padding: 2px 15px 2px 15px;
+/*    -ms-transform: rotate(15deg);  IE 9 
+    -webkit-transform: rotate(15deg);  Chrome, Safari, Opera 
+    transform: rotate(15deg);*/
+}

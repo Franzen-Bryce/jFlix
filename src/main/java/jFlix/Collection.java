@@ -61,6 +61,7 @@ public class Collection extends HttpServlet {
                 option.put("Title", rs.getString("movieTitle"));
                 option.put("Poster", rs.getString("moviePoster"));
                 option.put("shared", rs.getBoolean("shared"));
+                option.put("sharedName", rs.getString("sharedName"));
                 String movieGenre = rs.getString("movieGenre");
                 String[] genres = movieGenre.split(",");
                 ownedMovies.add(option);
