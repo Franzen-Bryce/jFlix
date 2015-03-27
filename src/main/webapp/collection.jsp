@@ -40,12 +40,13 @@ request.getSession().setAttribute("page", "collection");
                             <c:if test="${Option.Poster != 'N/A'}">
                                 <img class='movieImg' src='${Option.Poster}' alt='${Option.Title}' title='${Option.Title}'/>
                             </c:if>
+                            <c:if test="${Option.shared == true}">
+                                <div class="sharedBanner"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></div>
+                                <div class="sharedName">${Option.sharedName}</div>
+                            </c:if>
                         </a>
                     </div>
                     <p class="movieTitle">${Option.Title}</p>
-                    <c:if test="${Option.shared == false}">
-                                    <p>not Shared</p>
-                                </c:if>
                 </div>
             </c:forEach>
         </div>
