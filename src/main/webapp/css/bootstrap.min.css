@@ -5157,6 +5157,7 @@ footer {
 
 .singlePosterImage {
     text-align:  center;
+    cursor: pointer;
 }
 
 .singlePosterImage img {
