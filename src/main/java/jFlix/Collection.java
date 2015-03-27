@@ -41,7 +41,8 @@ public class Collection extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {        
+            throws ServletException, IOException {     
+
         Connection conn = new DBControl().connectDB();
         
         List<Map> ownedMovies = new ArrayList<>();
@@ -60,6 +61,8 @@ public class Collection extends HttpServlet {
                 option.put("Title", rs.getString("movieTitle"));
                 option.put("Poster", rs.getString("moviePoster"));
                 option.put("shared", rs.getBoolean("shared"));
+                String movieGenre = rs.getString("movieGenre");
+                String[] genres = movieGenre.split(",");
                 ownedMovies.add(option);
             }
         } catch (SQLException ex) {

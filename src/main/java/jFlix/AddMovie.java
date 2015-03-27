@@ -43,14 +43,13 @@ public class AddMovie extends HttpServlet {
         String moviePoster = request.getParameter("poster");
         int userId;
         String imdbId = request.getParameter("imdb");
-
+        
 //        System.out.println(movieTitle);
 //        System.out.println(movieGenre);
 //        System.out.println(moviePoster);
 //        System.out.println(imdbId);
         
         userId = (Integer) request.getSession().getAttribute("id");
-//        System.out.println("USER ID: " + userId);
         
         movieTitle = movieTitle.trim();
         
@@ -70,7 +69,8 @@ public class AddMovie extends HttpServlet {
         }
 
         
-        response.sendRedirect("SingleMovie?imdbID=" + imdbId + "&collection=false");
+        response.sendRedirect("SingleMovie?imdbID=" + imdbId 
+                + "&collection=false&shared=false");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
