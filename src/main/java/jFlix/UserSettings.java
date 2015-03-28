@@ -5,7 +5,6 @@
  */
 package jFlix;
 
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import static jFlix.Register.md5;
 import java.io.IOException;
 import java.io.PrintWriter;

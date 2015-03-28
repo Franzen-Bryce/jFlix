@@ -26,10 +26,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Bryce
+ * @author Gil
  */
-@WebServlet(name = "Collection", urlPatterns = {"/Collection"})
-public class Collection extends HttpServlet {
+@WebServlet(name = "SearchCollection", urlPatterns = {"/SearchCollection"})
+public class SearchCollection extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,21 +41,34 @@ public class Collection extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {     
+            throws ServletException, IOException {
+        int user = (int) request.getSession().getAttribute("id");
+        String title = (String) request.getParameter("search");
+        String genres1337 =  request.getParameter("genres");
 
-        Connection conn = new DBControl().connectDB();
         
+        String[] XGenres = genres1337.split(",");
+
+        
+        Connection conn = new DBControl().connectDB();
         List<Map> ownedMovies = new ArrayList<>();
         List<String> allGenres = new ArrayList<>();
+for (String xGenre : XGenres) {
+            xGenre = xGenre.replace("[", "");
+            xGenre = xGenre.replace("]", "");
+            xGenre = xGenre.trim();
+            allGenres.add(xGenre);
+        }
+
         try {
             Statement stmt = conn.createStatement();
             
-            String query = "SELECT * FROM ownership WHERE userId=" 
-                    + request.getSession().getAttribute("id") + " ORDER BY movieTitle";
+            String query = "SELECT * FROM ownership WHERE userId=" + user + " and movieTitle like \"%" + title + "%\"  ORDER BY movieTitle;";
+            System.out.println(query);
             
-            ResultSet rs = stmt.executeQuery(query);
-            
-            while (rs.next()) {
+          ResultSet rs = stmt.executeQuery(query);
+          
+          while (rs.next()) {
                 Map<String, Object> option = new HashMap<>();
 
                 option.put("imdbID", rs.getString("imdbId"));
@@ -63,29 +76,17 @@ public class Collection extends HttpServlet {
                 option.put("Poster", rs.getString("moviePoster"));
                 option.put("shared", rs.getBoolean("shared"));
                 option.put("sharedName", rs.getString("sharedName"));
-                String movieGenre = rs.getString("movieGenre");
-                String[] genres = movieGenre.split(",");
-                
-                for (String genre : genres) {
-                    genre = genre.trim();
-                    if (allGenres.isEmpty()) {
-                        allGenres.add(genre);
-                    }
-                    if (!(allGenres.contains(genre))) {
-                        allGenres.add(genre);
-                    }
-                }
                 ownedMovies.add(option);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Collection.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+            Logger.getLogger(SearchCollection.class.getName()).log(Level.SEVERE, null, ex);
+        }        
         Collections.sort(allGenres);
         request.setAttribute("genres", allGenres);
-
+        
         request.setAttribute("ownedMovies", ownedMovies);
         request.getRequestDispatcher("collection.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
