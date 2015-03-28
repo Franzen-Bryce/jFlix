@@ -63,7 +63,8 @@ for (String xGenre : XGenres) {
         try {
             Statement stmt = conn.createStatement();
             
-            String query = "SELECT * FROM ownership WHERE userId=" + user + " and movieTitle like \"%" + title + "%\"  ORDER BY movieTitle;";
+            String query = "SELECT * FROM ownership WHERE userId=" + user + " and movieTitle like \"%" 
+                            + title + "%\"  ORDER BY movieTitle;";
             
           ResultSet rs = stmt.executeQuery(query);
           

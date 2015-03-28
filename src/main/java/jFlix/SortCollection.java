@@ -46,6 +46,10 @@ public class SortCollection extends HttpServlet {
         int userID = (int) request.getSession().getAttribute("id");
         
         String genre = (String) request.getParameter("sortGenre");
+        if (genre.equals("NULL")) {
+            response.sendRedirect("Collection");
+            return;
+        }
         String genres1337 =  request.getParameter("genres");
         String[] XGenres = genres1337.split(",");
         

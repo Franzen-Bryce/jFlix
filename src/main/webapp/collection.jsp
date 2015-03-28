@@ -34,13 +34,11 @@ request.getSession().setAttribute("page", "collection");
                     <form action="SortCollection?genres=${genres}" method="POST" name="sortGenre">
                         <div class="control-group form-group">
                             <select class="form-control" name="sortGenre" onchange="this.form.submit();">
+                                <option value="NULL">Sort</option>
+                                <option vale="Shared">Shared</option>
                                 <c:forEach items="${genres}" var="genre">
                                     <option value="${genre}">${genre}</option>
                                 </c:forEach>
-<!--                                <option value="NULL">Sort</option>
-                                <option value="Shared">Shared</option>
-                                <option value="Action">Action</option>
-                                <option value="Romance">Romance</option>-->
                             </select>
                         </div>
                     </form>
