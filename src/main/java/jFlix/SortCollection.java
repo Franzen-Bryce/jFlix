@@ -47,9 +47,6 @@ public class SortCollection extends HttpServlet {
         
         String genre = (String) request.getParameter("sortGenre");
         String genres1337 =  request.getParameter("genres");
-        System.out.println(userID);
-        System.out.println(genre);
-        System.out.println(genres1337);
         String[] XGenres = genres1337.split(",");
         
         Connection conn = new DBControl().connectDB();
@@ -65,9 +62,14 @@ public class SortCollection extends HttpServlet {
 
         try {
             Statement stmt = conn.createStatement();
-            
-            String query = "SELECT * FROM ownership WHERE userId=" + userID + " and movieGenre like \"%" + genre + "%\"  ORDER BY movieTitle;";
-            System.out.println(query);
+            String query;
+            if (genre.equals("Shared")) {
+                query = "SELECT * FROM ownership WHERE userId=" + userID + " and shared=1 ORDER BY movieTitle;";    
+            }
+            else {
+                query = "SELECT * FROM ownership WHERE userId=" + userID + " and movieGenre like \"%" 
+                        + genre + "%\"  ORDER BY movieTitle;";
+            }
             
           ResultSet rs = stmt.executeQuery(query);
           

@@ -80,7 +80,7 @@ public class Collection extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(Collection.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        allGenres.add("Shared");
         Collections.sort(allGenres);
         request.setAttribute("genres", allGenres);
 
