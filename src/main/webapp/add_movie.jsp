@@ -71,7 +71,6 @@ request.getSession().setAttribute("page", "add_movie");
                         <div class='alert alert-success' role='alert'>Movie added to collection.</div>
                     </c:if>
                     <c:if test="${display}">
-                        <h2>Today's Popular Movie Suggestions</h2>
                         <c:forEach items="${populars}" var="movie">
                             <div class="movieContainerOuter">
                                 <div class='movieContainerInner'>
