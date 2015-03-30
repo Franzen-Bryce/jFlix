@@ -42,7 +42,8 @@ public class PopularMovie extends HttpServlet {
         Map<String, Object> map = mapper.readValue(url, Map.class);
         
         String imdbId = (String)map.get("imdb_id");
-        response.sendRedirect("SingleMovie?imdbID=" + imdbId + "&collection=false");
+        boolean shared = new DBControl().isShared( imdbId, (int)request.getSession().getAttribute("id"));
+        response.sendRedirect("SingleMovie?imdbID=" + imdbId + "&collection=false&shared=" + shared);
         
     }
 
