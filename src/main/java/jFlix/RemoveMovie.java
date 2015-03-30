@@ -39,7 +39,6 @@ public class RemoveMovie extends HttpServlet {
         
         String imdbID = request.getParameter("imdb");
         int userId = (int) request.getSession().getAttribute("id");
-        System.out.println(userId);
         
         Connection conn = new DBControl().connectDB();
         

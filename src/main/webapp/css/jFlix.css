@@ -91,3 +91,51 @@ a:hover, a:focus {
 .movie-search {
     margin-top: 0px;
 }
+.sharedName {
+    position: absolute;
+    bottom: 45px;
+    text-align: center;
+    background-color: #c20202;
+    color: #fff;
+    text-decoration: none;
+    width: 102%;
+    margin-left: -2px;
+    padding: 5px 0px;
+    box-shadow: 0px 2px 5px #000;
+    z-index: 999;
+}
+
+/*for banner in corner*/
+.sharedBanner {
+    position: absolute;
+    top: 1px;
+    right: -29px;
+    color: #fff;
+    text-decoration: none;
+    padding: 2px 15px 2px 15px;
+    -ms-transform: rotate(45deg);  
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    border-left: 35px solid transparent;
+    border-right: 35px solid transparent;
+    border-bottom: 35px solid #c20202;
+}
+
+/*for shared text*/
+.sharedBanner span {
+    position: absolute;
+    top: 15px;
+    right: -3px;
+    font-size: 11px;
+}
+
+/*for shared glyphcon*/
+/*.sharedBanner span {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    -ms-transform: rotate(-45deg);  
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    font-size: 20px;
+}*/

@@ -49,31 +49,35 @@ if(null == session.getAttribute("username")){
             <!-- End Modal For Trailer-->
             <!--Modal for Sharing-->
             <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-body">
+              <div class="modal-dialog" style="width: 500px;">
+                <div class="modal-content" style="background-color: #c20202; border-radius: 10px; padding: 30px;">
+                    <h1 style="color: #fff;">Checkout to Friend</h1><br>
                       <form action="ShareMovie?imdb=${movie.imdbID}" method="POST">
-                          <span style="color:white">Shared with:</span> <input type="text" name="sharedName" />
-                          <button type="submit" value="Submit">Share</button>
+                            <div class="control-group form-group">
+                            <label style="color: #fff;">Name of Friend:</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="sharedName" name="sharedName" required>
+                                <span class="input-group-btn">
+                                    <button type="submit" value="Submit" class="btn btn-success userSettingsButton">Checkout</button>
+                                </span>
+                            </div>
+                            </div>
                       </form>
-                  </div>
-                  <div class="modal-footer">
-                  </div>
                 </div>
               </div>
             </div>
             <!--End Modal for Sharing-->
             <div class="row">
                 <div class="col-md-3" style="padding-top: 20px;">
-                    <div class="singlePosterImage">
+                    <div class="singlePosterImage" data-toggle="modal" data-target="#myModal">
                         <img class="img-responsive" src="${Poster}" alt="${movie.Title}"/>
-                        <span id="movieTrailer" data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+                        <span id="movieTrailer" class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
                     </div>
                     <div class="row">
                         <div class="col-md-12" style="padding-top: 10px">
                              <c:if test="${owned == 'true'}">
                                 <c:choose>
-                                    <c:when test="${shared.equals('false')}">
+                                    <c:when test="${shared == 'false'}">
                                         <br> 
                                         <button data-toggle="modal" data-target="#shareModal" class="btn btn-primary" style="width: 100%; height: 60px">Checkout to Friend&nbsp;&nbsp;<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></button>
                                         <br> <br>
@@ -86,7 +90,7 @@ if(null == session.getAttribute("username")){
                                 <br>
                                 </c:otherwise>
                                 </c:choose>
-                                <form action="ShareMovie?imdb=${movie.imdbID}" method="POST">
+                                <form action="RemoveMovie?imdb=${movie.imdbID}" method="POST">
                                 <button type="submit" class="btn btn-success" style="width: 100%; height: 50px"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp;Remove From Collection</button>
                                 </form>
                             </c:if>

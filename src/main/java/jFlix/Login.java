@@ -97,7 +97,7 @@ public class Login extends HttpServlet {
                    
                    
                    if (rs.getString("username").equals(user)) { //only enters if it finds the username
-                       System.out.println("I FOUND A USER");
+//                       System.out.println("I FOUND A USER");
                        
                        if (rs.getString("password").equals(hashPass)) { //enters if pswd equal
                            //sets the session for the user and then redirects to their collections

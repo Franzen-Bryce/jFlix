@@ -40,10 +40,10 @@ public class ShareMovie extends HttpServlet {
         String sharedName = request.getParameter("sharedName");
         String imdbID = request.getParameter("imdb");
         String button = request.getParameter("button");
-        System.out.println(button);
+//        System.out.println(button);
         if (null == button)
             button = "";
-                System.out.println(button);
+//                System.out.println(button);
 
         Connection conn = new DBControl().connectDB();
         try {
@@ -61,7 +61,7 @@ public class ShareMovie extends HttpServlet {
                         +request.getSession().getAttribute("id")+";";
             }
             
-            System.out.println(query);
+//            System.out.println(query);
             stmt.executeUpdate(query);
         } catch (SQLException ex) {
             Logger.getLogger(ShareMovie.class.getName()).log(Level.SEVERE, null, ex);
