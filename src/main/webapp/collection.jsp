@@ -26,7 +26,7 @@ request.getSession().setAttribute("page", "collection");
             <%@include file="/modules/nav.html"%>
         </header>
         <div class="container">
-            <h1>My Collection</h1>
+            <h1 class='page-title'>Collection</h1>
             <c:forEach items="${ownedMovies}" var="Option">
                 <div class="movieContainerOuter">
                     <div class='movieContainerInner'>

@@ -28,11 +28,11 @@ request.getSession().setAttribute("page", "add_movie");
         </header>
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-lg-8">
-                    <h1 style="margin-top: 0px;">Search Movies / Add to Your Collection</h1>
+                <div class='text-center'>
+                    <h1 class='page-title'>Search & Add</h1>
                 </div>
-                <div class="col-md-4 col-lg-4">
-                    <form action="Search" method="POST">
+                <div class="col-md-4 col-md-offset-4">
+                    <form class='movie-search' action="Search" method="POST">
                         <div class="control-group form-group">
                             <div class="input-group">
                                 <input type="text" autofocus class="form-control" name="search" id="search" placeholder="e.g. Movie Title">
