@@ -32,7 +32,7 @@ request.getSession().setAttribute("page", "collection");
                     <form action="SortCollection?genres=${genres}" method="POST" name="sortGenre">
                         <div class="control-group form-group">
                             <select class="form-control" name="sortGenre" onchange="this.form.submit();">
-                                <option value="NULL">Sort</option>
+                                <option value="NULL">Filter</option>
                                 <option vale="Shared">Shared</option>
                                 <c:forEach items="${genres}" var="genre">
                                     <option value="${genre}">${genre}</option>
@@ -75,7 +75,7 @@ request.getSession().setAttribute("page", "collection");
                                     <span style="float: left; width: 139px; padding: 2px 10px; text-align: left;">${Option.sharedName}</span>
                                     <span style="float: right; margin-right: 5px; width: 60px;">
                                         <form action="ShareMovie?imdb=${Option.imdbID}" method="POST">
-                                         <button style="padding: 2px 5px; background-color: #660000;" type="submit" name="button" value="return" class="btn btn-primary" style="width: 100%; height: 60px">Return</button>
+                                         <button style="padding: 2px 5px; border: #fff solid 1px;" type="submit" name="button" value="return" class="btn btn-primary">Return</button>
                                      </form>
                                     </span>
                                 </div>

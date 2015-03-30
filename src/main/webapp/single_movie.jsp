@@ -50,11 +50,11 @@ if(null == session.getAttribute("username")){
             <!--Modal for Sharing-->
             <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog" style="width: 500px;">
-                <div class="modal-content" style="background-color: #c20202; border-radius: 10px; padding: 30px;">
-                    <h1 style="color: #fff;">Checkout to Friend</h1><br>
+                <div class="modal-content" style="background-color: #fff; border-radius: 10px; padding: 30px;">
+                    <h1>Checkout to Friend</h1><br>
                       <form action="ShareMovie?imdb=${movie.imdbID}" method="POST">
                             <div class="control-group form-group">
-                            <label style="color: #fff;">Name of Friend:</label>
+                            <label>Name of Friend:</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="sharedName" name="sharedName" required>
                                 <span class="input-group-btn">
@@ -97,7 +97,7 @@ if(null == session.getAttribute("username")){
                             <c:if test="${owned != 'true'}">
                                 <form action="AddMovie?poster=${Poster}&Title=${movie.Title}
                                   &genre=${movie.Genre}&imdb=${movie.imdbID}" method="POST">
-                                <button type="submit" class="btn btn-primary" style="width: 100%; height: 60px"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>&nbsp;&nbsp;Add To My Collection</button>
+                                <button type="submit" class="btn btn-primary" style="width: 100%; height: 50px"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>&nbsp;&nbsp;Add To My Collection</button>
                                 </form>
                             </c:if>
                         </div>

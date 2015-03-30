@@ -43,8 +43,8 @@ request.getSession().setAttribute("page", "settings");
         <div class="container">
             <row>
                 <div class='col-md-12'>
-                    <h1>User Settings: ${sessionScope.username}</h1>
-                    <br>
+                    <h1 class='page-title'>User Settings</h1>
+                    <h2 class='text-center'>${sessionScope.username}</h2>
                 </div>
             </row>
             <row>
