@@ -45,7 +45,7 @@ request.getSession().setAttribute("page", "collection");
                     <form action="SearchCollection?genres=${genres}" method="POST">
                         <div class="control-group form-group">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="search" id="search" placeholder="e.g. Movie Title"/>
+                                <input type="text" class="form-control" name="search" id="search" placeholder="Search Collection"/>
                                 <span class="input-group-btn">
                                   <button class="btn btn-primary" type="submit">Search</button>
                                 </span> 

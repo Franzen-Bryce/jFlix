@@ -36,7 +36,7 @@
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Username:</label>
-                            <input type="text" class="form-control" id="username" name="username" required data-validation-required-message="Please enter your username.">
+                            <input type="text" class="form-control" id="username" name="username" required data-validation-required-message="Please enter your username." autofocus>
                             <p class="help-block"></p>
                         </div>
                     </div>

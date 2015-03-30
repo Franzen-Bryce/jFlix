@@ -28,7 +28,7 @@ if(null == session.getAttribute("username")){
             <div class="backButton">
                 <div class="container">
                     <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-                        <span>${backButton}</span>
+                        <span class='back-text'>${backButton}</span>
                 </div>
             </div>
         </a>

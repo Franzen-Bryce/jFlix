@@ -68,9 +68,9 @@ public class AddMovie extends HttpServlet {
             Logger.getLogger(AddMovie.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        
-        response.sendRedirect("SingleMovie?imdbID=" + imdbId 
-                + "&collection=false&shared=false");
+        request.setAttribute("additionComplete", true);
+        request.getRequestDispatcher("PopularMovies").forward(request, response);
+        //response.sendRedirect("PopularMovies");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
