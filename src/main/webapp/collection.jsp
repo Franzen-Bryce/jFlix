@@ -28,10 +28,7 @@ request.getSession().setAttribute("page", "collection");
         <div class="container">
             <h1 class='page-title'>Collection</h1>
             <div class="row">
-                <div class="col-md-5">
-                    <h1 style="margin-top: 0px; margin-bottom: 20px;">My Collection</h1>
-                </div>
-                <div class="col-md-2">
+                <div class="col-md-2 col-md-offset-3">
                     <form action="SortCollection?genres=${genres}" method="POST" name="sortGenre">
                         <div class="control-group form-group">
                             <select class="form-control" name="sortGenre" onchange="this.form.submit();">
@@ -44,13 +41,13 @@ request.getSession().setAttribute("page", "collection");
                         </div>
                     </form>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <form action="SearchCollection?genres=${genres}" method="POST">
                         <div class="control-group form-group">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" id="search" placeholder="e.g. Movie Title"/>
                                 <span class="input-group-btn">
-                                  <button class="btn btn-primary" type="submit">Search Collection</button>
+                                  <button class="btn btn-primary" type="submit">Search</button>
                                 </span> 
                             </div>
                         </div>

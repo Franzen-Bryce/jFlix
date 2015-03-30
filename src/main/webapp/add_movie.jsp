@@ -47,7 +47,7 @@ request.getSession().setAttribute("page", "add_movie");
             <div class="row">
                 <div class="col-md-12">
                     <c:if test="${search == 'No Results'}">
-                        <h3 style="text-align: center;">No Results Found</h3>
+                        <h3 class='text-center'>No Results Found</h3>
                     </c:if>
                     <c:if test="${search != 'No Results'}">
                         <c:forEach items="${search}" var="movie">
@@ -64,6 +64,19 @@ request.getSession().setAttribute("page", "add_movie");
                                     </a>
                                 </div>
                                 <p class="movieTitle">${movie.Title}</p>
+                            </div>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${display}">
+                        <h2>Popular Movies</h2>
+                        <c:forEach items="${populars}" var="movie">
+                            <div class="movieContainerOuter">
+                                <div class='movieContainerInner'>
+                                    <a href='PopularMovie?id=${movie.get("id")}'>
+                                        <img class='movieImg' src='http://image.tmdb.org/t/p/w185${movie.get("poster_path")}' alt='${movie.get("title")}' title='${movie.get("title")}'/>
+                                    </a>
+                                </div>
+                                <p class="movieTitle">${movie.get("title")}</p>
                             </div>
                         </c:forEach>
                     </c:if>
