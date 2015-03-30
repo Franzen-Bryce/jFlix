@@ -117,11 +117,9 @@ public class DBControl {
          try {
              Statement stmt = conn.createStatement();
              String query = "SELECT shared FROM ownership WHERE userId=" + userId + " and imdbID=\"" + imdbId + "\";";
-             System.out.println(query);
              ResultSet rs= stmt.executeQuery(query);
              while (rs.next())
                  shared = rs.getBoolean("shared");
-             System.out.println(shared);
          } catch (SQLException ex) {
              Logger.getLogger(DBControl.class.getName()).log(Level.SEVERE, null, ex);
          }
