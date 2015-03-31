@@ -105,6 +105,14 @@ a:hover, a:focus {
     display: block;
 }
 
+.home-1 img {
+    box-shadow: -5px 2px 25px #d2d2d2;
+}
+
+.home-2 img {
+    box-shadow: 5px 2px 25px #660000;
+}
+
 .no-margin {
     margin: 0px 0px;
 }
