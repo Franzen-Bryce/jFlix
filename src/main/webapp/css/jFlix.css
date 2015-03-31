@@ -34,7 +34,7 @@ a:hover, a:focus {
     display: block;
     max-width: 600px;
     width: 90%;
-    margin: 0px auto 50px;
+    margin: 0px auto 50px auto;
     -webkit-animation-name: flipInX; 
     -webkit-animation-duration: 1s;
     animation-name: flipInX;
@@ -74,10 +74,14 @@ a:hover, a:focus {
   }
 }
 
+.homeContainer {
+    width: calc(100% - 15px);
+}
+
 .home-top {
     background-color: #c20202;
     width: 100%;
-    padding: 170px 0 100px 0;
+    padding: 170px 0px 100px 0px;
 }
 .home-bottom {
     padding-top: 50px;
