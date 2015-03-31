@@ -26,19 +26,23 @@
         <link href='css/jFlix.css' type='text/css' rel='stylesheet'>
     </head>
     <body>
-        <div class='row'>
-            <div class='text-center home-top'>
-                <img src="images/logo.png" alt='logo' class='home-logo'>
-                <a class='btn-home' href='login.jsp'>Sign In</a>
-                <a class='btn-home' href='register.jsp'>Register</a>
+        <div class="homeContainer">
+            <div class='row'>
+                <div class='text-center home-top'>
+                    <img src="images/logo.png" alt='logo' class='home-logo'>
+                    <a class='btn-home' href='login.jsp'>Sign In</a>
+                    <a class='btn-home' href='register.jsp'>Register</a>
+                </div>
             </div>
-        </div>
-        <div class='text-center home-bottom'>
-            <div class="col-md-4">
-                <h1>A revolutionary step towards managing your movie collection <span class='starts-here lobster'>starts here!</span></h1>
-            </div>
-            <div class="col-md-8">
-                <img class="img-responsive" src="images/screenExample.png" alt="Collection Screen"/>
+            <div class="row">
+                <div class='text-center home-bottom'>
+                    <div class="col-md-4">
+                        <h1>A revolutionary step towards managing your movie collection <span class='starts-here lobster'>starts here!</span></h1>
+                    </div>
+                    <div class="col-md-8">
+                        <img class="img-responsive" src="images/screenExample.png" alt="Collection Screen"/>
+                    </div>
+                </div>
             </div>
         </div>
         <footer>
