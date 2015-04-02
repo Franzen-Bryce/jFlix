@@ -5,7 +5,6 @@
  */
 package jFlix;
 
-import static jFlix.Register.md5;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
@@ -22,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -90,7 +90,7 @@ public class UserSettings extends HttpServlet {
             
             if (newPassword1.equals(newPassword2)){
                 //update password in database
-                String hashedPass = md5(newPassword1);
+                String hashedPass = BCrypt.hashpw(newPassword1, BCrypt.gensalt());;
                 
                 //update password in database
                 Connection conn = new DBControl().connectDB();

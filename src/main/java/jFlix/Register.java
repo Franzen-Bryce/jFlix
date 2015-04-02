@@ -20,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -37,29 +38,6 @@ public class Register extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    /**
-     * 
-     * @param input
-     * @return 
-     */
-
-    public static String md5(String input) {
-        String md5 = null;
-        if(null == input) return null;
-        try {
-            //Create MessageDigest object for MD5
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            //Update input string in message digest
-            digest.update(input.getBytes(), 0, input.length());
-            //Converts message digest value in base 16 (hex) 
-            md5 = new BigInteger(1, digest.digest()).toString(16);
-        } catch (NoSuchAlgorithmException e) {
-        }
-        return md5;
-    }
-    
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -90,13 +68,13 @@ public class Register extends HttpServlet {
 
             if(message){
                 request.getRequestDispatcher("register.jsp").forward(request, response);
-                return;
             }
             else {
                 try {
                     //no errors, creates user and logs them in
 
-                    String hashedPass = md5(password);
+                    String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
+
                     request.setAttribute("username", username);
                     request.setAttribute("displayname", displayname);
 
@@ -109,7 +87,7 @@ public class Register extends HttpServlet {
 
                     //query from the database all information from the user table
                     String query = "INSERT INTO user (username, displayname, password) VALUES (\"" + username 
-                            + "\", \"" + displayname + "\", \"" + hashedPass + "\");";
+                            + "\", \"" + displayname + "\", \"" + hashed + "\");";
                     //CREATE A SESSION FOR USER
                     stmt = conn.createStatement();
 
@@ -121,9 +99,26 @@ public class Register extends HttpServlet {
                     
                 }
                 request.getRequestDispatcher("Login").forward(request, response);
-                return;
             }
     }
+    
+//    
+//    // Hash a password for the first time
+//String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
+//
+//// gensalt's log_rounds parameter determines the complexity
+//// the work factor is 2**log_rounds, and the default is 10
+//String hashed = BCrypt.hashpw(password, BCrypt.gensalt(12));
+//
+//// Check that an unencrypted password matches one that has
+//// previously been hashed
+//if (BCrypt.checkpw(candidate, hashed))
+//	System.out.println("It matches");
+//else
+//	System.out.println("It does not match");
+    
+    
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

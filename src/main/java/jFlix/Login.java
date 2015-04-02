@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -28,25 +29,6 @@ import java.util.logging.Logger;
 public class Login extends HttpServlet {
 
     
-    /**
-     * 
-     * @param input
-     * @return 
-     */
-    public static String md5(String input) {
-        String md5 = null;
-        if(null == input) return null;
-        try {
-            //Create MessageDigest object for MD5
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            //Update input string in message digest
-            digest.update(input.getBytes(), 0, input.length());
-            //Converts message digest value in base 16 (hex) 
-            md5 = new BigInteger(1, digest.digest()).toString(16);
-        } catch (NoSuchAlgorithmException e) {
-        }
-        return md5;
-    }
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -72,10 +54,8 @@ public class Login extends HttpServlet {
                String user = request.getParameter("username");
                String password = request.getParameter("password");
                
-               user = user.toLowerCase();
-               
-               String hashPass = md5(password);
-               
+               user = user.toLowerCase();               
+             
                Connection conn;
                Statement stmt;
                boolean message = false;
@@ -88,40 +68,42 @@ public class Login extends HttpServlet {
                String query = "SELECT * FROM user";
                stmt = conn.createStatement();
                
-               //executes the query and saves it into a ResultSet
-               ResultSet rs = stmt.executeQuery(query);
-               
                //loops through all the users and checks them
-               while (rs.next()) {
+               try ( //executes the query and saves it into a ResultSet
+                       ResultSet rs = stmt.executeQuery(query)) {
+                   //loops through all the users and checks them
+                   while (rs.next()) {
 //                   out.println(rs.getString("username")); //displays each user
-                   
-                   
-                   if (rs.getString("username").equals(user)) { //only enters if it finds the username
-//                       System.out.println("I FOUND A USER");
                        
-                       if (rs.getString("password").equals(hashPass)) { //enters if pswd equal
-                           //sets the session for the user and then redirects to their collections
-                           request.getSession().setAttribute("username", user);
-                           request.getSession().setAttribute("displayname", rs.getString("displayname"));
-                           request.getSession().setAttribute("id", rs.getInt("id"));
-                           request.getRequestDispatcher("Collection").forward(request, response);
-                           rs.close();
-                           message = false;
-                           break;
+                       
+                       if (rs.getString("username").equals(user)) { //only enters if it finds the username
+//                       System.out.println("I FOUND A USER");
+                           
+                           if (BCrypt.checkpw(password, rs.getString("password")))
+                               System.out.println("YES");
+                           if (BCrypt.checkpw(password, rs.getString("password"))) { //enters if pswd equal
+                               //sets the session for the user and then redirects to their collections
+                               request.getSession().setAttribute("username", user);
+                               request.getSession().setAttribute("displayname", rs.getString("displayname"));
+                               request.getSession().setAttribute("id", rs.getInt("id"));
+                               request.getRequestDispatcher("Collection").forward(request, response);
+                               rs.close();
+                               message = false;
+                               break;
 //                        System.out.println("Password is correct");
+                           }
+                           else {
+                               request.setAttribute("message", "Password Incorrect");
+                               message = true;
+                               break;
+                           }
                        }
                        else {
-                           request.setAttribute("message", "Password Incorrect");
+                           request.setAttribute("message", "User does not Exist");
                            message = true;
-                           break;
                        }
                    }
-                   else {
-                       request.setAttribute("message", "User does not Exist");
-                       message = true;
-                   }
                }
-               rs.close();
                stmt.close();
                conn.close();
                
