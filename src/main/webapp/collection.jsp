@@ -72,12 +72,12 @@ request.getSession().setAttribute("page", "collection");
                                     <span>Shared</span>
                                 </div>
                                 <div class="sharedName">
-                                    <span style="float: left; width: 139px; padding: 2px 10px; text-align: left;">${Option.sharedName}</span>
-                                    <span style="float: right; margin-right: 5px; width: 60px;">
+                                    <div class="sharedNameName">${Option.sharedName}</div>
+                                    <div class="sharedNameButton">
                                         <form action="ShareMovie?imdb=${Option.imdbID}" method="POST">
-                                         <button style="padding: 2px 5px; border: #fff solid 1px;" type="submit" name="button" value="return" class="btn btn-primary">Return</button>
-                                     </form>
-                                    </span>
+                                         <button type="submit" name="button" value="return" class="btn btn-primary">Return</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </c:if>
                         </a>

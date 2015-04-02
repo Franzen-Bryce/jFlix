@@ -34,7 +34,7 @@ a:hover, a:focus {
     display: block;
     max-width: 600px;
     width: 90%;
-    margin: 0px auto 50px;
+    margin: 0px auto 50px auto;
     -webkit-animation-name: flipInX; 
     -webkit-animation-duration: 1s;
     animation-name: flipInX;
@@ -77,13 +77,44 @@ a:hover, a:focus {
 .home-top {
     background-color: #c20202;
     width: 100%;
-    padding: 170px 0 100px 0;
+    padding: 170px 0px 100px 0px;
 }
-.home-bottom {
+.home-1 {
     padding-top: 50px;
     width: 100%;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
     text-align: right;
+}
+.home-2 {
+    background-color: #c20202;
+    color: #fff;
+    padding-top: 50px;
+    width: 100%;
+    padding-bottom: 50px;
+    text-align: left;
+}
+
+.home-1 h1 {
+    margin-top: -8px;
+}
+
+.home-2 h1 {
+    color: #fff;
+    margin-top: -8px;
+    font-size: 50px;
+    display: block;
+}
+
+.home-1 img {
+    box-shadow: -5px 2px 25px #d2d2d2;
+}
+
+.home-2 img {
+    box-shadow: 5px 2px 25px #660000;
+}
+
+.no-margin {
+    margin: 0px 0px;
 }
 
 .starts-here {
@@ -179,7 +210,7 @@ a:hover, a:focus {
 .sharedName {
     position: absolute;
     bottom: 45px;
-    text-align: center;
+    min-height: 40px;
     background-color: #c20202;
     color: #fff;
     text-decoration: none;
@@ -214,9 +245,39 @@ a:hover, a:focus {
     font-size: 11px;
 }
 
+.sharedNameName {
+    float: left; 
+    width: 139px; 
+    padding: 2px 10px; 
+    text-align: left;
+    position: relative;
+    margin-top: 5px;
+}
+
+.sharedNameButton {
+    float: right; 
+    margin-right: 5px; 
+    width: 60px;
+}
+
+.sharedNameButton button {
+    border: 1px solid #fff;
+    padding: 2px 5px;
+    position: absolute;
+        top: 50%;
+        margin-top: -13px;
+        right: 10px;
+}
+
+.sharedNameButton button:hover {
+    border: 1px solid #fff;
+}
+
 .return-movie {
     padding: 2px 5px; 
     background-color: #660000;
+    padding: 2px 5px; 
+    border: #fff solid 1px;
 }
 
 /*for shared glyphcon*/
