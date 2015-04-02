@@ -20,15 +20,11 @@ import java.util.logging.Logger;
 public class DBControl {
     
      static final String DB_URL = "jdbc:mysql://localhost/jFlix";
-       //root ""
        static final String DB_URL2 = "jdbc:mysql://" + System.getenv("OPENSHIFT_MYSQL_DB_HOST") + ":" +
                System.getenv("OPENSHIFT_MYSQL_DB_PORT")+ "/jFlix";
-       //java "java-pass 
     
     public Connection connectDB() {
         Connection conn = null;
-        Statement stmt = null;
-        boolean message = false;
         
         String DB;
         String dbUser;
@@ -45,20 +41,15 @@ public class DBControl {
         dbPswd = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
         }
         
-//        PrintWriter out = response.getWriter();
-        
-
         try {
             
             //creates the driver for connecting
             Class.forName("com.mysql.jdbc.Driver");
-            
-//            System.out.println(DB);
-            
+                        
             conn = DriverManager.getConnection(DB, dbUser, dbPswd);
 
         }
-        catch (Exception e) {
+        catch (ClassNotFoundException | SQLException e) {
             System.out.println("ERROR");
         }
         

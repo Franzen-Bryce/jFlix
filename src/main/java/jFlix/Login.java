@@ -43,11 +43,6 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         
            try {
-               /*
-               Bryce and Paul, if you do not have MySQL working with a database for this project,
-               You can use the default username Beast and password qwerty to log in and test the
-               Collection page.
-               */
                //Gets the username and password that is typed in for logging in.
                
                
@@ -69,18 +64,11 @@ public class Login extends HttpServlet {
                stmt = conn.createStatement();
                
                //loops through all the users and checks them
-               try ( //executes the query and saves it into a ResultSet
-                       ResultSet rs = stmt.executeQuery(query)) {
+               //executes the query and saves it into a ResultSet
+               try (ResultSet rs = stmt.executeQuery(query)) {
                    //loops through all the users and checks them
-                   while (rs.next()) {
-//                   out.println(rs.getString("username")); //displays each user
-                       
-                       
+                   while (rs.next()) {                       
                        if (rs.getString("username").equals(user)) { //only enters if it finds the username
-//                       System.out.println("I FOUND A USER");
-                           
-                           if (BCrypt.checkpw(password, rs.getString("password")))
-                               System.out.println("YES");
                            if (BCrypt.checkpw(password, rs.getString("password"))) { //enters if pswd equal
                                //sets the session for the user and then redirects to their collections
                                request.getSession().setAttribute("username", user);
@@ -90,7 +78,6 @@ public class Login extends HttpServlet {
                                rs.close();
                                message = false;
                                break;
-//                        System.out.println("Password is correct");
                            }
                            else {
                                request.setAttribute("message", "Password Incorrect");

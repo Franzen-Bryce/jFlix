@@ -7,14 +7,8 @@ package jFlix;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -91,7 +85,6 @@ public class Register extends HttpServlet {
                     //CREATE A SESSION FOR USER
                     stmt = conn.createStatement();
 
-//                    System.out.println(query);
                     //executes the query and saves it into a ResultSet
                     stmt.executeUpdate(query);
                 }
@@ -101,25 +94,8 @@ public class Register extends HttpServlet {
                 request.getRequestDispatcher("Login").forward(request, response);
             }
     }
-    
-//    
-//    // Hash a password for the first time
-//String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
-//
-//// gensalt's log_rounds parameter determines the complexity
-//// the work factor is 2**log_rounds, and the default is 10
-//String hashed = BCrypt.hashpw(password, BCrypt.gensalt(12));
-//
-//// Check that an unencrypted password matches one that has
-//// previously been hashed
-//if (BCrypt.checkpw(candidate, hashed))
-//	System.out.println("It matches");
-//else
-//	System.out.println("It does not match");
-    
-    
-    
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+       
+     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

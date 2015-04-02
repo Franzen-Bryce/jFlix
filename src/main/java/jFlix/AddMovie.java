@@ -44,11 +44,6 @@ public class AddMovie extends HttpServlet {
         int userId;
         String imdbId = request.getParameter("imdb");
         
-//        System.out.println(movieTitle);
-//        System.out.println(movieGenre);
-//        System.out.println(moviePoster);
-//        System.out.println(imdbId);
-        
         userId = (Integer) request.getSession().getAttribute("id");
         
         movieTitle = movieTitle.trim();
@@ -70,7 +65,6 @@ public class AddMovie extends HttpServlet {
 
         request.setAttribute("additionComplete", true);
         request.getRequestDispatcher("PopularMovies").forward(request, response);
-        //response.sendRedirect("PopularMovies");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
