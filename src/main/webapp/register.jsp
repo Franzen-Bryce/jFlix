@@ -59,7 +59,7 @@
                             <input type="password" class="form-control" id="password2" name="password2" required data-validation-required-message="Please confirm your password.">
                         </div>
                     </div>
-                    <div id="success"></div>
+                    <div id="success">${message}</div>
                     <!-- For success/fail messages -->
                     <div class='text-center'>
                         <button type="submit" class="btn btn-default">Register</button>

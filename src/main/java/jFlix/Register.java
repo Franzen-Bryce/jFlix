@@ -74,8 +74,7 @@ public class Register extends HttpServlet {
             boolean message = false;
             if (!(password.equals(password2))){
                 //passwords dont match, set error
-               request.setAttribute("passwordError", "Passwords Do Not Match");
-               System.out.println("Passwords do not match");
+               request.setAttribute("passwordError", "Either username or password incorrect.");
 
                message = true;
             }
@@ -84,15 +83,13 @@ public class Register extends HttpServlet {
             boolean exists = new DBControl().checkUser(username);//get current username from database
             if(exists){
                 //username already exists, set error
-                request.setAttribute("usernameError", "Username is unavailable, "
-                        + "please choose a different username.");
-                System.out.println("Found a username");
+                request.setAttribute("usernameError", "Either username or password incorrect.");
                 message = true;
             }
 
 
             if(message){
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                request.getRequestDispatcher("register.jsp").forward(request, response);
                 return;
             }
             else {
