@@ -41,6 +41,10 @@
                 position: relative;
                 z-index: 150;
             }
+            .div5 {
+                position: relative;
+                z-index: 200;
+            }
         </style>
     </head>
     <body>
@@ -97,7 +101,7 @@
                 </ul>
             </div>
         </div>
-        <div class="row text-center home-1 no-margin">
+        <div class="row text-center home-1 no-margin div5">
             <div class="col-md-5">
                 <h1><span class='starts-here lobster'>Lend Movies With Ease</span></h1>
                 <ul class="home-ul">
@@ -107,6 +111,18 @@
             </div>
             <div class="col-md-7">
                 <img class="img-responsive" src="images/filterResults.png" alt="Lend Movies With Ease"/>
+            </div>
+        </div>
+        <div class="row text-center home-2 no-margin div6">
+            <div class="col-md-7">
+                <img class="img-responsive" style="box-shadow: none;" src="images/APIS.png" alt="API Image"/>
+            </div>
+            <div class="col-md-5">
+                <h1><span class='lobster'>Multiple API's To Provide Loads of Information</span></h1>
+                <ul class="home-ul">
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                </ul>
             </div>
         </div>
         <footer>
