@@ -25,21 +25,7 @@
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
         <link href='css/jFlix.css' type='text/css' rel='stylesheet'>
         <style>
-            .div2 {
-                display: block;
-                position: relative;
-                z-index: 50;
-            }
-            .div3 {
-                display: block;
-                position: relative;
-                z-index: 100;
-            }
-            .div3 {
-                display: block;
-                position: relative;
-                z-index: 150;
-            }
+            
         </style>
     </head>
     <body>
@@ -61,21 +47,25 @@
                
             </div>
         </div>
-        <div class="row text-center home-2 no-margin div2">
-            <div class="col-md-7" style="margin-top: -400px; position: inherit; z-index: -20;">
+        <div class="row text-center home-2 no-margin">
+            <div class="col-md-7">
                 <img class="img-responsive" src="images/screenExample.png" alt="Full Movie Details"/>
             </div>
-            <div class="col-md-5" style="margin-top: -400px;">
+            <div class="col-md-5">
                 <h1><span class='lobster'>Full Movie Details</span></h1>
                 <ul class="home-ul">
-                    <li>Add movies to your personal collection</li>
-                    <li>Filter your collection by Genre, Title, or Shared Status</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
                 </ul>
             </div>
         </div>
-        <div class="row text-center home-1 no-margin div3">
+        <div class="row text-center home-1 no-margin">
             <div class="col-md-5">
                 <h1><span class='starts-here lobster'>Full Feature Search and Popular Film Suggestions</span></h1>
+                <ul class="home-ul">
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                </ul>
             </div>
             <div class="col-md-7">
                 <img class="img-responsive" src="images/searchAndSuggestedMovies.png" alt="Search and Suggested Films"/>
@@ -87,11 +77,19 @@
             </div>
             <div class="col-md-5">
                 <h1><span class='lobster'>On-Demand Trailers</span></h1>
+                <ul class="home-ul">
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                </ul>
             </div>
         </div>
         <div class="row text-center home-1 no-margin">
             <div class="col-md-5">
                 <h1><span class='starts-here lobster'>Lend Movies With Ease</span></h1>
+                <ul class="home-ul">
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                </ul>
             </div>
             <div class="col-md-7">
                 <img class="img-responsive" src="images/filterResults.png" alt="Lend Movies With Ease"/>
