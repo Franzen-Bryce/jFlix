@@ -83,7 +83,9 @@ a:hover, a:focus {
     padding-top: 50px;
     width: 100%;
     padding-bottom: 50px;
-    text-align: right;
+    text-align: left;
+    padding-left: 30px;
+    height: 500px;
 }
 .home-2 {
     background-color: #c20202;
@@ -92,6 +94,7 @@ a:hover, a:focus {
     width: 100%;
     padding-bottom: 50px;
     text-align: left;
+    height: 500px;
 }
 
 .home-1 h1 {
@@ -115,6 +118,14 @@ a:hover, a:focus {
 
 .no-margin {
     margin: 0px 0px;
+}
+
+.home-ul {
+    margin-top: 50px;
+    text-align: left;
+    font-size: 16pt;
+    line-height: 30px;
+    margin-left: 20px;
 }
 
 .starts-here {
