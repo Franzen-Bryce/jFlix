@@ -25,7 +25,22 @@
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
         <link href='css/jFlix.css' type='text/css' rel='stylesheet'>
         <style>
-            
+            .div2 {
+                position: relative;
+                z-index: 50;
+            }
+            .div2 img {
+                position: relative;
+                z-index: 0;
+            }
+            .div3{
+                position: relative;
+                z-index: 100;
+            }
+            .div4{
+                position: relative;
+                z-index: 150;
+            }
         </style>
     </head>
     <body>
@@ -44,10 +59,9 @@
             </div>
             <div class="col-md-7">
                 <img class="img-responsive" src="images/collection.png" alt="Collection Screen"/>
-               
             </div>
         </div>
-        <div class="row text-center home-2 no-margin">
+        <div class="row text-center home-2 no-margin div2">
             <div class="col-md-7">
                 <img class="img-responsive" src="images/screenExample.png" alt="Full Movie Details"/>
             </div>
@@ -59,7 +73,7 @@
                 </ul>
             </div>
         </div>
-        <div class="row text-center home-1 no-margin">
+        <div class="row text-center home-1 no-margin div3">
             <div class="col-md-5">
                 <h1><span class='starts-here lobster'>Full Feature Search and Popular Film Suggestions</span></h1>
                 <ul class="home-ul">
