@@ -72,8 +72,8 @@
             <div class="col-md-5">
                 <h1><span class='lobster'>Full Movie Details</span></h1>
                 <ul class="home-ul">
-                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                    <li>See the details of an individual movie</li>
+                    <li>Includes awards, actors, movie rating and more</li>
                 </ul>
             </div>
         </div>
@@ -81,8 +81,8 @@
             <div class="col-md-5">
                 <h1><span class='starts-here lobster'>Full Feature Search and Popular Film Suggestions</span></h1>
                 <ul class="home-ul">
-                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                    <li>See what movies are popular without having to search</li>
+                    <li>Search for your favorite movies and add them to your collection</li>
                 </ul>
             </div>
             <div class="col-md-7">
@@ -96,8 +96,8 @@
             <div class="col-md-5">
                 <h1><span class='lobster'>On-Demand Trailers</span></h1>
                 <ul class="home-ul">
-                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                    <li>Think the poster of a movie is interesting?</li>
+                    <li>Watch the trailer right here and now to see if you will enjoy it</li>
                 </ul>
             </div>
         </div>
@@ -105,8 +105,8 @@
             <div class="col-md-5">
                 <h1><span class='starts-here lobster'>Lend Movies With Ease</span></h1>
                 <ul class="home-ul">
-                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                    <li>Did your friend or neighbor borrow a movie?</li>
+                    <li>Keep record of it here to know who has what movie</li>
                 </ul>
             </div>
             <div class="col-md-7">
@@ -120,8 +120,8 @@
             <div class="col-md-5">
                 <h1><span class='lobster'>Multiple API's To Provide Loads of Information</span></h1>
                 <ul class="home-ul">
-                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                    <li>We have used multiple technologies to provide easy access for you</li>
+                    <li>This allows us to be up to date with data and posters</li>
                 </ul>
             </div>
         </div>
