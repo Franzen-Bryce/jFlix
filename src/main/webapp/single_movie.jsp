@@ -19,6 +19,13 @@ if(null == session.getAttribute("username")){
         <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
         <link href='css/jFlix.css' type='text/css' rel='stylesheet'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>
+            $('.modal .close').click(function (e) {
+                $('#mask').hide();
+                $('#mask').css("opacity",0);    
+                $('.window').hide();
+            });   
+        </script>
     </head>
     <body>
         <header>
@@ -38,10 +45,12 @@ if(null == session.getAttribute("username")){
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-body">
-<!--                      <button type="button" style="display: inline-block; float: right;" class="btn btn-danger" data-dismiss="modal">Close</button>-->
-                    <iframe width="854" height="510" src="https://www.youtube.com/embed/${trailerId}?rel=0" frameborder="0" allowfullscreen></iframe>
-<!--                  </div>
-                  <div class="modal-footer">-->
+                    <object width="854" height="510">
+                        <param name="movie" value="${trailerId}"></param>
+                        <param name="allowFullScreen" value="true"></param>
+                        <param name="allowscriptaccess" value="always"></param>
+                        <embed src="${trailerId}" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="854" height="510"></embed>
+                    </object>
                   </div>
                 </div>
               </div>
@@ -69,10 +78,15 @@ if(null == session.getAttribute("username")){
             <!--End Modal for Sharing-->
             <div class="row">
                 <div class="col-md-3" style="padding-top: 20px;">
-                    <div class="singlePosterImage" data-toggle="modal" data-target="#myModal">
+                    <c:if test="${trailerId != 'noTrailer'}">
+                        <div class="singlePosterImage" data-toggle="modal" data-target="#myModal">
+                            <img class="img-responsive" src="${Poster}" alt="${movie.Title}"/>
+                                <span id="movieTrailer" class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
+                        </div>
+                    </c:if>
+                    <c:if test="${trailerId == 'noTrailer'}">
                         <img class="img-responsive" src="${Poster}" alt="${movie.Title}"/>
-                        <span id="movieTrailer" class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
-                    </div>
+                    </c:if>
                     <div class="row">
                         <div class="col-md-12" style="padding-top: 10px">
                              <c:if test="${owned == 'true'}">

@@ -8,6 +8,7 @@ package jFlix;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,33 +79,46 @@ public class SingleMovie extends HttpServlet {
         title = title.trim();
         title = title.replace(" ", "-");
         
-        // GET MOVIE Youtube ID
-        URL url2 = new URL("http://gdata.youtube.com/feeds/api/videos?q=" + title + "official-movie-trailer-" + year + "-english&start-index=1&max-results=1&v=2&alt=json&hd");
-  
-        ObjectMapper mapper2 = new ObjectMapper();
-        
-        Map<String, Object> map2 = mapper2.readValue(url2, Map.class);
-        
-        // GET MOVIE ID
-        String trailerId = "";
-        
-        Map<String, Object> map3 = (Map)map2.get("feed");
-        ArrayList movieEntry = (ArrayList)map3.get("entry");
-        
-        for (Object item : movieEntry)
-        {
-              Map<String, Object> innerMap2 = (Map<String, Object>)item;
-              for (String key : innerMap2.keySet())
-              {
-                  if (key.equals("media$group")){
-                        Map<String, Object> temp = (Map) innerMap2.get(key);
-                        Map<String, String> temp2 = (Map) temp.get("yt$videoid");
-                        trailerId = temp2.get("$t");
-                    }
+        try {
+            // GET MOVIE Youtube ID
+            URL url2 = new URL("http://gdata.youtube.com/feeds/api/videos?q=" + title + "official-movie-trailer-" + year + "-english&start-index=1&max-results=1&v=2&alt=json&hd");
+
+            ObjectMapper mapper2 = new ObjectMapper();
+
+            Map<String, Object> map2 = mapper2.readValue(url2, Map.class);
+
+            // GET MOVIE ID
+            String trailerId = "";
+
+            Map<String, Object> map3 = (Map)map2.get("feed");
+            ArrayList movieEntry = (ArrayList)map3.get("entry");
+
+            for (Object item : movieEntry)
+            {
+                  Map<String, Object> innerMap2 = (Map<String, Object>)item;
+                  for (String key : innerMap2.keySet())
+                  {
+//                      if (key.equals("media$group")){
+//                            Map<String, Object> temp = (Map) innerMap2.get(key);
+//                            Map<String, String> temp2 = (Map) temp.get("yt$videoid");
+//                            trailerId = temp2.get("$t");
+//                        }
+                      if (key.equals("media$group")){
+                            Map<String, Object> temp = (Map) innerMap2.get(key);
+                            List<Map> temp2 = (List) temp.get("media$content");
+                            Map<String, String> temp3 =  temp2.get(0);
+//                            System.out.println(temp3.get("url"));
+                            trailerId = temp3.get("url");
+                        }
+                  }
               }
-          }
-              
-        request.setAttribute("trailerId", trailerId);
+
+            request.setAttribute("trailerId", trailerId);
+        }
+        catch (Exception e) {
+            request.setAttribute("trailerId", "noTrailer");
+        }
+        
         request.setAttribute("movie", map);
         
         boolean movieOwned = new DBControl().checkIfOwned((int)request.getSession().getAttribute("id"), imdbID);
